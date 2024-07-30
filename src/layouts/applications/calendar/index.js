@@ -61,9 +61,9 @@ function Calendar() {
             <MDBox mb={3}>
               <NextEvents />
             </MDBox>
-            <MDBox mb={3}>
+            {/* <MDBox mb={3}>            // doesn't work
               <ProductivityChart />
-            </MDBox>
+            </MDBox> */}
           </Grid>
         </Grid>
       </MDBox>

@@ -209,6 +209,12 @@ const pageRoutes = [
         icon: "list",
         subject: "items",
       },
+      {
+        name: "persona-management",
+        route: "/examples-api/persona-management",
+        icon: "list",
+        subject: "personas",
+      },
     ],
   },
   {

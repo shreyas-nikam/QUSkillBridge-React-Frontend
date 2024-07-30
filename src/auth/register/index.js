@@ -63,6 +63,7 @@ function Register() {
       [e.target.name]: e.target.value,
     });
   };
+
   const submitHandler = async (e) => {
     e.preventDefault();
     const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -91,6 +92,7 @@ function Register() {
       setErrors({ ...errors, agreeError: true });
       return;
     }
+    
     // here will be the post action to add a user to the db
     const newUser = { name: inputs.name, email: inputs.email, password: inputs.password };
     const myData = {

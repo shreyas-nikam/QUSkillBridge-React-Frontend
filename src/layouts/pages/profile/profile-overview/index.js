@@ -13,6 +13,9 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import { useState, useEffect } from "react";
+
+
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
@@ -53,12 +56,72 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import ResumeInformation from "../ResumeInfo";
 
+
+import AuthService from "services/auth-service";
+import getId from "services/helper-service";
+
 function Overview() {
+
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    email: "",
+    password: "",
+    newPassword: "",
+    currentPassword: "",
+    confirmPassword: "",
+    profile_image: "",
+    linkedin_profile_id: "",
+    summary: "",
+    headline: "",
+    skills: "",
+    preferred_jobs: "",
+    preferred_locations: "",
+    education: "",
+    experience: "",
+    location_name: "",
+    resume_location: "",
+    jobs_visited: "",
+    available_courses: "",
+  });
+
+  useEffect(() => {
+    (async () => {
+      const response = await AuthService.getProfile();
+      setUser((prevUser) => ({
+        ...prevUser,
+        id: response.data.id,
+        name: response.data.attributes.name,
+        email: response.data.attributes.email,
+        password: response.data.attributes.password,
+        newPassword: response.data.attributes.newPassword,
+        currentPassword: response.data.attributes.currentPassword,
+        confirmPassword: response.data.attributes.confirmPassword,
+        profile_image: response.data.attributes.profile_image,
+        linkedin_profile_id: response.data.attributes.linkedin_profile_id,
+        summary: response.data.attributes.summary,
+        headline: response.data.attributes.headline,
+        skills: response.data.attributes.skills,
+        preferred_jobs: response.data.attributes.preferred_jobs,
+        preferred_locations: response.data.attributes.preferred_locations,
+        education: response.data.attributes.education,
+        experience: response.data.attributes.experience,
+        location_name: response.data.attributes.location_name,
+        resume_location: response.data.attributes.resume_location,
+        jobs_visited: response.data.attributes.jobs_visited,
+        available_courses: response.data.attributes.available_courses,
+      }));
+    })();
+  }, []);
+
+
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header>
+      <Header user={user}>
         <MDBox mt={5} mb={3}>
           <Grid container spacing={2}>
            
