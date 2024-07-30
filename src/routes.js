@@ -75,6 +75,7 @@ import CategoryManagement from "cruds/category-management";
 import TagManagement from "cruds/tag-management";
 import UserManagement from "cruds/user-management";
 import ItemManagement from "cruds/item-management";
+import PersonaManagement from "cruds/persona-management";
 
 // Material Dashboard 2 PRO React components
 import MDAvatar from "components/MDAvatar";
@@ -178,6 +179,13 @@ const routes = [
         route: "/examples-api/item-management",
         component: <ItemManagement />,
         type: "items",
+      },
+      {
+        name: "Persona Management",
+        key: "persona-management",
+        route: "/examples-api/persona-management",
+        component: <PersonaManagement />,
+        type: "personas",
       },
     ],
   },

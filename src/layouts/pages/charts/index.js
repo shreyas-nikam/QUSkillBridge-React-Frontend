@@ -73,14 +73,14 @@ function Charts() {
                 chart={defaultLineChartData}
               />
             </Grid>
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>              // chart does not work
               <GradientLineChart
                 icon={{ component: "show_chart" }}
                 title="Line chart with gradient"
                 description="Visits from devices"
                 chart={gradientLineChartData}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </MDBox>
         <MDBox mb={6}>
@@ -105,7 +105,7 @@ function Charts() {
         </MDBox>
         <MDBox mb={6}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+            {/* <Grid item xs={12} md={6}>                            // chart does not work
               <MixedChart
                 icon={{ color: "primary", component: "auto_graph" }}
                 title="Mixed chart"
@@ -113,7 +113,7 @@ function Charts() {
                 height="19.75rem"
                 chart={mixedChartData}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={6}>
               <BubbleChart
                 icon={{ color: "primary", component: "multiline_chart" }}

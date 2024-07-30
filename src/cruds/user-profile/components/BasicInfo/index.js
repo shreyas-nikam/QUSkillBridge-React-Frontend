@@ -31,13 +31,14 @@ import FormField from "layouts/pages/account/components/FormField";
 import AuthService from "services/auth-service";
 
 function BasicInfo({ user, isDemo }) {
-  const [info, setInfo] = useState({ name: "", email: "" });
+  const [info, setInfo] = useState({ name: "", email: "", linkedin_profile_id: "" });
   const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
 
   useEffect(() => {
     setInfo({
       name: user.name,
       email: user.email,
+      linkedin_profile_id: user.linkedin_profile_id,
     });
   }, [user]);
 
@@ -77,30 +78,18 @@ function BasicInfo({ user, isDemo }) {
       return;
     }
 
+
     // set new user data for call
-    let userData;
-    if (isDemo) {
-      userData = {
-        data: {
-          type: "profile",
-          attributes: {
-            name: info.name,
-            profile_image: user.profile_image ?? null,
-          },
+    let userData = {
+      data: {
+        type: "profile",
+        attributes: {
+          name: info.name,
+          email: info.email,
+          profile_image: user.profile_image ?? null,
         },
-      };
-    } else {
-      userData = {
-        data: {
-          type: "profile",
-          attributes: {
-            name: info.name,
-            email: info.email,
-            profile_image: user.profile_image ?? null,
-          },
-        },
-      };
-    }
+      },
+    };
 
     // call api for update
     await AuthService.updateProfile(JSON.stringify(userData));

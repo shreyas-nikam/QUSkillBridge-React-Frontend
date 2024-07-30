@@ -138,6 +138,7 @@ function UserManagement() {
         name: row.attributes.name,
         email: row.attributes.email,
         role: roleName.attributes.name,
+        linkedin_profile_id: row.attributes.linkedin_profile_id,
         created_at: row.attributes.created_at,
       };
     });

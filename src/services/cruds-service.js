@@ -155,6 +155,35 @@ class CrudService {
     const endpoint = `items/${id}`;
     return await HttpService.patch(endpoint, payload);
   };
+
+  // persona requests
+  getPersonas = async () => {
+    const endpoint = "personas";
+    return await HttpService.get(endpoint);
+  };
+
+  deletePersona = async (id) => {
+    const endpoint = `personas/${id}`;
+    return await HttpService.delete(endpoint);
+  };
+
+  createPersona = async (payload) => {
+    const endpoint = "personas";
+    return await HttpService.post(endpoint, payload);
+  };
+
+  getPersona = async (id) => {
+    const endpoint = `personas/${id}`;
+    return await HttpService.get(endpoint);
+  };
+
+  updatePersona = async (payload, id) => {
+    const endpoint = `personas/${id}`;
+    return await HttpService.patch(endpoint, payload);
+  };
+
+
+
 }
 
 export default new CrudService();

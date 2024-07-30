@@ -23,6 +23,8 @@ import EditTag from "cruds/tag-management/edit-tag";
 import NewTag from "cruds/tag-management/new-tag";
 import EditUser from "cruds/user-management/edit-user";
 import NewUser from "cruds/user-management/new-user";
+import EditPersona from "cruds/persona-management/edit-persona";
+import NewPersona from "cruds/persona-management/new-persona";
 
 /** 
   All of the routes for the Material Dashboard 2 PRO React are added here,
@@ -108,6 +110,18 @@ const crudRoutes = [
     route: "/item-management/edit-item/:id",
     component: <EditItem />,
     type: "items",
+  },
+  {
+    key: "new-persona",
+    route: "/persona-management/new-persona",
+    component: <NewPersona />,
+    type: "personas",
+  },
+  {
+    key: "edit-persona",
+    route: "/persona-management/edit-persona/:id",
+    component: <EditPersona />,
+    type: "personas",
   },
 ];
 
