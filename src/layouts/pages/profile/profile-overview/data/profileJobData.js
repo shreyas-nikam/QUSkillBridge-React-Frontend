@@ -20,62 +20,50 @@ import ivana from "assets/images/ivana-square.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";*/}
 
-const profilesListData = [
+const profileJobData = [
   {
-    //image: kal,
-    name: "Sophie B.",
-    description: "Hi! I need more information..",
+    
+    name: "Product Designer",
     action: {
       type: "internal",
       route: "/pages/profile/profile-overview",
       color: "info",
-      label: "reply",
+      label: "Edit",
     },
   },
   {
-    //image: marie,
-    name: "Anne Marie",
-    description: "Awesome work, can you..",
+    
+    name: "Product Engineer",
     action: {
       type: "internal",
       route: "/pages/profile/profile-overview",
       color: "info",
-      label: "reply",
+      label: "Edit",
     },
   },
   {
-    //image: ivana,
-    name: "Ivanna",
-    description: "About files I can..",
+    
+    name: "UX Designer",
     action: {
       type: "internal",
       route: "/pages/profile/profile-overview",
       color: "info",
-      label: "reply",
+      label: "Edit",
     },
   },
+
   {
-    //image: team4,
-    name: "Peterson",
-    description: "Have a great afternoon..",
+    
+    name: "UX Researcher",
     action: {
       type: "internal",
       route: "/pages/profile/profile-overview",
       color: "info",
-      label: "reply",
+      label: "Edit",
     },
   },
-  {
-    //image: team3,
-    name: "Nick Daniel",
-    description: "Hi! I need more information..",
-    action: {
-      type: "internal",
-      route: "/pages/profile/profile-overview",
-      color: "info",
-      label: "reply",
-    },
-  },
+  
+  
 ];
 
-export default profilesListData;
+export default profileJobData;

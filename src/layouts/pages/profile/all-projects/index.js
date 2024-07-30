@@ -20,6 +20,7 @@ import Grid from "@mui/material/Grid";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Icon from "@mui/material/Icon";
+import Tooltip from "@mui/material/Tooltip";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
@@ -34,6 +35,9 @@ import ComplexProjectCard from "examples/Cards/ProjectCards/ComplexProjectCard";
 
 // Project page components
 import Header from "layouts/pages/profile/components/Header";
+import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+
+import CourseCard from "examples/Cards/CourseCard";
 
 // Images
 import team1 from "assets/images/team-1.jpg";
@@ -47,6 +51,22 @@ import logoXD from "assets/images/small-logos/logo-xd.svg";
 import logoAsana from "assets/images/small-logos/logo-asana.svg";
 import logoInvision from "assets/images/small-logos/logo-invision.svg";
 import logoAtlassian from "assets/images/small-logos/logo-atlassian.svg";
+import booking1 from "assets/images/products/product-1-min.jpg";
+import booking2 from "assets/images/products/product-2-min.jpg";
+import booking3 from "assets/images/products/product-3-min.jpg";
+// Images
+import homeDecor1 from "assets/images/home-decor-1.jpg";
+import homeDecor2 from "assets/images/home-decor-2.jpg";
+import homeDecor3 from "assets/images/home-decor-3.jpg";
+import homeDecor4 from "assets/images/home-decor-4.jpeg";
+
+ // Action buttons for the CourseCard
+ const actionButtons = (
+  <>
+    
+  </>
+);
+
 
 function AllProjects() {
   // ComplexProjectCard dropdown menu state
@@ -92,9 +112,9 @@ function AllProjects() {
       <Header />
       <MDBox pb={3}>
         <Grid container alignItems="center">
-          <Grid item xs={12} md={7}>
+          <Grid item xs={12} md={6}>
             <MDBox mb={1}>
-              <MDTypography variant="h5">Some of Our Awesome Projects</MDTypography>
+              <MDTypography variant="h5">Courses</MDTypography>
             </MDBox>
             <MDBox mb={2}>
               <MDTypography variant="body2" color="text">
@@ -104,106 +124,54 @@ function AllProjects() {
             </MDBox>
           </Grid>
           <Grid item xs={12} md={5} sx={{ textAlign: "right" }}>
-            <MDButton variant="gradient" color="info">
-              <Icon>add</Icon>&nbsp; Add New
+          
+            <MDButton variant="gradient" color="info" alignItems = "center">
+              &nbsp; See All
             </MDButton>
+            
           </Grid>
         </Grid>
-        <MDBox mt={5}>
+        
+      </MDBox>
+      
+        <MDBox mt={2}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoSlack}
-                  title="slack bot"
-                  description="If everything I did failed - which it doesn't, I think that it actually succeeds."
-                  dateTime="02.03.22"
-                  members={[team1, team2, team3, team4, team5]}
-                  dropdown={{
-                    action: openSlackBotMenu,
-                    menu: renderMenu(slackBotMenu, closeSlackBotMenu),
-                  }}
+              <MDBox mt={3}>
+                <CourseCard
+                  image={booking1}
+                  title="AEDT Law Course"
+                  description='The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona.'
+                  label="Explore"
+                  action={actionButtons}
                 />
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoSpotify}
-                  title="premium support"
-                  description="Pink is obviously a better color. Everyone’s born confident, and everything’s taken away from you."
-                  dateTime="22.11.21"
-                  members={[team1, team2, team3]}
-                  dropdown={{
-                    action: openPremiumSupportMenu,
-                    menu: renderMenu(premiumSupportMenu, closePremiumSupportMenu),
-                  }}
+              <MDBox mt={3}>
+                <CourseCard
+                  image={booking2}
+                  title="Office Studio"
+                  description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.'
+                  label = "Explore"
+                  action={actionButtons}
                 />
               </MDBox>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoXD}
-                  title="design tools"
-                  description="Constantly growing. We’re constantly making mistakes from which we learn and improve."
-                  dateTime="06.03.20"
-                  members={[team1, team2, team3, team4]}
-                  dropdown={{
-                    action: openDesignToolsMenu,
-                    menu: renderMenu(designToolsMenu, closeDesignToolsMenu),
-                  }}
+              <MDBox mt={3}>
+                <CourseCard
+                  image={booking3}
+                  title="Beautiful Castle"
+                  description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Milan.'
+                  label = "Explore"
+                  action={actionButtons}
                 />
               </MDBox>
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoAsana}
-                  title="looking great"
-                  description="You have the opportunity to play this game of life you need to appreciate every moment."
-                  dateTime="14.03.24"
-                  members={[team1, team2, team3, team4, team5, team3]}
-                  dropdown={{
-                    action: openLookingGreatMenu,
-                    menu: renderMenu(lookingGreatMenu, closeLookingGreatMenu),
-                  }}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoInvision}
-                  title="developer first"
-                  description="For standing out. But the time is now to be okay to be the greatest you."
-                  dateTime="16.01.22"
-                  members={[team1, team2, team3, team4]}
-                  dropdown={{
-                    action: openDeveloperFirstMenu,
-                    menu: renderMenu(developerFirstMenu, closeDeveloperFirstMenu),
-                  }}
-                />
-              </MDBox>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <MDBox mb={1.5} mt={1.5}>
-                <ComplexProjectCard
-                  image={logoAtlassian}
-                  title="Product Development"
-                  description="We strive to embrace and drive change in our industry. We are happy to work at such a project."
-                  dateTime="16.01.22"
-                  members={[team1, team2, team3, team4]}
-                  dropdown={{
-                    action: openDeveloperFirstMenu,
-                    menu: renderMenu(developerFirstMenu, closeDeveloperFirstMenu),
-                  }}
-                />
-              </MDBox>
-            </Grid>
+            
           </Grid>
-        </MDBox>
-      </MDBox>
+          </MDBox>
       <Footer />
     </DashboardLayout>
   );
