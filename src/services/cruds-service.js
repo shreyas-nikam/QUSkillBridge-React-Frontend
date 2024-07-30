@@ -182,7 +182,11 @@ class CrudService {
     return await HttpService.patch(endpoint, payload);
   };
 
-
+  // jobs requests
+  getJobsByPersona = async (id) => {
+    const endpoint = `jobs/personaJobs/${id}`;
+    return await HttpService.get(endpoint);
+  }
 
 }
 

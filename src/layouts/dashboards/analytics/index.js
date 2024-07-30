@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context";
 
 import Grid from "@mui/material/Grid";
@@ -46,21 +46,39 @@ import booking1 from "assets/images/products/product-1-min.jpg";
 import booking2 from "assets/images/products/product-2-min.jpg";
 import booking3 from "assets/images/products/product-3-min.jpg";
 
+
+import CrudService from "services/cruds-service";
+
+
 function Analytics() {
   const { sales, tasks } = reportsLineChartData;
 
   const { setIsAuthenticated, getCurrentUser } = useContext(AuthContext);
+  const [user, setUser] = useState({});
 
+
+  const [jobs, setJobs] = useState([]);
+  // function to get the jobs data for the particular user
   useEffect(() => {
     async function checkToken() {
-      let user = await getCurrentUser();
-      if (!user) {
+      let user_id = await getCurrentUser();
+      if (!user_id) {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
       }
+      else {
+        setUser(user_id);
+        return user_id;
+      }
     }
-    checkToken();
+    async function fetchJobsData(userId) {
+      let response = await CrudService.getJobsByPersona(userId);
+      console.log("response data", response);
+      setJobs(response);
+    }
+    checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
   }, []);
+
 
   // Action buttons for the BookingCard
   const actionButtons = (
