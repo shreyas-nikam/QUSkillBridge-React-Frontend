@@ -1,4 +1,5 @@
 import HttpService from "./http.service";
+import FastApiService from "./fastapi.service";
 
 class CrudService {
   // users requests
@@ -187,6 +188,45 @@ class CrudService {
     const endpoint = `jobs/personaJobs/${id}`;
     return await HttpService.get(endpoint);
   }
+
+  getJob = async (id) => {
+    const endpoint = `jobs/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  // courses requests
+  getCourses = async () => {
+    const endpoint = `courses`;
+    return await HttpService.get(endpoint);
+  }
+
+  getCourse = async (id) => {
+    const endpoint = `courses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  // update profile
+  updateProfile = async (payload) => {
+    console.log("payload", payload);
+    const endpoint = `get_profile_suggestions/`;
+    return await FastApiService.post(endpoint, payload);
+  }
+
+  generateCourseOutline = async (payload) => {
+    const endpoint = `generate_course_outline/`;
+    return await FastApiService.post(endpoint, payload);
+  }
+
+  generateCoverLetter = async (payload) => {
+    const endpoint = `generate_course_outline/`;
+    return await FastApiService.post(endpoint, payload);
+  }
+
+  generateSkillMatchScore = async (payload) => {
+    const endpoint = `generate_skill_match_score/`;
+    return await FastApiService.post(endpoint, payload);
+  }
+
 
 }
 

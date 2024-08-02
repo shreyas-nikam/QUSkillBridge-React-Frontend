@@ -45,6 +45,7 @@ function Register() {
     email: "",
     password: "",
     confirmPass: "",
+    linkedin_profile_id: "",
     agree: false,
   });
 
@@ -54,7 +55,9 @@ function Register() {
     passwordError: false,
     confirmPassError: false,
     agreeError: false,
+    linkedin_profile_taken: false,
     emailTaken: false,
+    endError: ""
   });
 
   const changeHandler = (e) => {
@@ -62,6 +65,27 @@ function Register() {
       ...inputs,
       [e.target.name]: e.target.value,
     });
+    setErrors({
+      ...errors,
+      nameError: false,
+      emailError: false,
+      passwordError: false,
+      confirmPassError: false,
+      agreeError: false,
+      linkedin_profile_taken: false,
+      emailTaken: false,
+      endError: ""
+    });
+  };
+
+  const checkLinkedinProfile = async (linkedin_profile_id) => {
+    // check regex for linnkedin profile id https://www.linkedin.com/in/<id>
+    const linkedinProfileRegex = /^https:\/\/www.linkedin.com\/in\/[a-zA-Z0-9-]+$/;
+    if (!linkedin_profile_id.match(linkedinProfileRegex)) {
+      setErrors({ ...errors, linkedin_profile_taken: true });
+      return false;
+    }
+    return true;
   };
 
   const submitHandler = async (e) => {
@@ -92,9 +116,19 @@ function Register() {
       setErrors({ ...errors, agreeError: true });
       return;
     }
-    
+
+    if (inputs.linkedin_profile_id.trim().length === 0) {
+      setErrors({ ...errors, endError: "Linkedin Profile ID can not be empty" });
+      return;
+    }
+
+    if (!(await checkLinkedinProfile(inputs.linkedin_profile_id))) {
+      setErrors({ ...errors, endError: "Linkedin Profile ID must be a valid URL. Example: https://www.linkedin.com/in/<id>" });
+      return;
+    }
+
     // here will be the post action to add a user to the db
-    const newUser = { name: inputs.name, email: inputs.email, password: inputs.password };
+    const newUser = { name: inputs.name, email: inputs.email, password: inputs.password, linkedin_profile_id: inputs.linkedin_profile_id };
     const myData = {
       data: {
         type: "users",
@@ -106,8 +140,7 @@ function Register() {
       const response = await AuthService.register(myData);
       authContext.login(response.access_token);
     } catch (err) {
-      setErrors({ ...errors, emailTaken: true });
-      console.error(err);
+      setErrors({ ...errors, endError: err.message });
       return null;
     }
 
@@ -116,6 +149,7 @@ function Register() {
       email: "",
       password: "",
       confirmPass: "",
+      linkedin_profile_id: "",
       agree: false,
     });
 
@@ -125,7 +159,9 @@ function Register() {
       passwordError: false,
       confirmPassError: false,
       agreeError: false,
+      linkedin_profile_taken: false,
       emailTaken: false,
+      endError: ""
     });
   };
 
@@ -200,6 +236,29 @@ function Register() {
             </MDBox>
             <MDBox mb={2}>
               <MDInput
+                type="text"
+                label="Linkedin Profile ID"
+                variant="standard"
+                fullWidth
+                name="linkedin_profile_id"
+                value={inputs.linkedin_profile_id}
+                onChange={changeHandler}
+                error={errors.linkedin_profile_taken}
+                inputProps={{
+                  autoComplete: "linkedin_profile_id",
+                  form: {
+                    autoComplete: "off",
+                  },
+                }}
+              />
+              {errors.linkedin_profile_taken && (
+                <MDTypography variant="caption" color="error" fontWeight="light">
+                  The Linkedin Profile ID has already been taken
+                </MDTypography>
+              )}
+            </MDBox>
+            <MDBox mb={2}>
+              <MDInput
                 type="password"
                 label="Password"
                 variant="standard"
@@ -250,13 +309,13 @@ function Register() {
               </InputLabel>
               <MDTypography
                 component="a"
-                href="#"
+                href="https://www.quantuniversity.com/privacy.html"
                 variant="button"
                 fontWeight="bold"
                 color="info"
                 textGradient
               >
-                Terms and Conditions
+                Terms and Conditions.
               </MDTypography>
             </MDBox>
             {errors.agreeError && (
@@ -274,6 +333,11 @@ function Register() {
                 sign in
               </MDButton>
             </MDBox>
+            {errors.endError && (
+              <MDTypography variant="caption" color="error" fontWeight="light">
+                {errors.endError}
+              </MDTypography>
+            )}
             <MDBox mt={3} mb={1} textAlign="center">
               <MDTypography variant="button" color="text">
                 Already have an account?{" "}

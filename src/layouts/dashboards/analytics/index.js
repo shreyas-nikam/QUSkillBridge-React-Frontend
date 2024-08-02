@@ -58,7 +58,7 @@ function Analytics() {
 
 
   const [jobs, setJobs] = useState([]);
-  // function to get the jobs data for the particular user
+
   useEffect(() => {
     async function checkToken() {
       let user_id = await getCurrentUser();
@@ -66,18 +66,51 @@ function Analytics() {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
       }
-      else {
-        setUser(user_id);
-        return user_id;
-      }
     }
-    async function fetchJobsData(userId) {
-      let response = await CrudService.getJobsByPersona(userId);
-      console.log("response data", response);
-      setJobs(response);
-    }
-    checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
+    checkToken();
   }, []);
+
+
+  // // function to get the jobs data for the particular user
+  // useEffect(() => {
+  //   async function checkToken() {
+  //     let user_id = await getCurrentUser();
+  //     if (!user_id) {
+  //       setIsAuthenticated(false);
+  //       localStorage.removeItem("token");
+  //     }
+  //     else {
+  //       setUser(user_id);
+  //       return user_id;
+  //     }
+  //   }
+  //   async function fetchJobsData(userId) {
+  //     let response = await CrudService.getJobsByPersona(userId);
+  //     console.log("response data", response);
+  //     setJobs(response);
+  //   }
+  //   checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
+  // }, []);
+
+
+  // // function to get a particular course
+  // useEffect(() => {
+  //   async function fetchCourseData() {
+  //     let response = await CrudService.getCourse("66a91f79a760e1475cb110a4");
+  //     console.log("response data for course", response);
+  //   }
+  //   fetchCourseData();
+  // }, []);
+
+
+  // function to get a particular job
+  // useEffect(() => {
+  //   async function fetchJobData() {
+  //     let response = await CrudService.getJob("66a91f79a760e1475cb110b6");
+  //     console.log("response data for job", response);
+  //   }
+  //   fetchJobData();
+  // }, []);
 
 
   // Action buttons for the BookingCard
