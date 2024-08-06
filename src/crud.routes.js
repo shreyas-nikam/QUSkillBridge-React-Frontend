@@ -26,6 +26,7 @@ import NewUser from "cruds/user-management/new-user";
 import EditPersona from "cruds/persona-management/edit-persona";
 import NewPersona from "cruds/persona-management/new-persona";
 import ExpandedJob from "cruds/jobs-dashboard/expanded-job";
+import VisitedJob from "cruds/jobs-dashboard/visited-job";
 /** 
   All of the routes for the Material Dashboard 2 PRO React are added here,
   You can add a new route, customize the routes and delete the routes here.
@@ -129,6 +130,12 @@ const crudRoutes = [
     component: <ExpandedJob />,
     type: "jobs",
   },
+  {
+    key: "visited-job",
+    route: "/jobs-dashboard/visited-job/:job_id",
+    component: <VisitedJob />,
+    type: "jobs",
+  }
 
 ];
 

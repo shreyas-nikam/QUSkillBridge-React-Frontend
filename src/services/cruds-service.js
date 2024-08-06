@@ -201,6 +201,17 @@ class CrudService {
     return await HttpService.get(endpoint);
   }
 
+  addJobToVisitedJobs = async (payload) => {
+    const endpoint = `jobs/addJobToVisitedJobs/`;
+    const response = await HttpService.post(endpoint, payload);
+    return response;
+  }
+
+  getVisitedJobById = async (id) => {
+    const endpoint = `jobs/visitedJob/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
   // courses requests
   getCourses = async () => {
     const endpoint = `courses`;
@@ -238,11 +249,10 @@ class CrudService {
 
   generateSkillMatchScore = async (payload) => {
     const endpoint = `${fastapiUrl}/generate_skill_match_score/`;
+    console.log(endpoint, payload);
     const response = await axios.post(endpoint, payload);
     return response.data;
   }
-
-
 
 
 }
