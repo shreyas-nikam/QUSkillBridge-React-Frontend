@@ -6,7 +6,7 @@
 * Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
-Coded by www.creative-tim.com
+Coded by www.nikam-shreyas.com
 
  =========================================================
 
@@ -119,107 +119,6 @@ function ExpandedJob() {
             navigate(`/jobs-dashboard/visited-job/${response._id}`);
         }
     }
-
-    // // function to get the jobs data for the particular user
-    // useEffect(() => {
-    //   async function checkToken() {
-    //     let user_id = await getCurrentUser();
-    //     if (!user_id) {
-    //       setIsAuthenticated(false);
-    //       localStorage.removeItem("token");
-    //     }
-    //     else {
-    //       setUser(user_id);
-    //       return user_id;
-    //     }
-    //   }
-    //   async function fetchJobsData(userId) {
-    //     let response = await CrudService.getJobsByPersona(userId);
-    //     console.log("response data", response);
-    //     setJobs(response);
-    //   }
-    //   checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
-    // }, []);
-
-
-    // // function to get a particular course
-    // useEffect(() => {
-    //   async function fetchCourseData() {
-    //     let response = await CrudService.getCourse("66a91f79a760e1475cb110a4");
-    //     console.log("response data for course", response);
-    //   }
-    //   fetchCourseData();
-    // }, []);
-
-
-    // function to get a particular job
-    // useEffect(() => {
-    //   async function fetchJobData() {
-    //     let response = await CrudService.getJobDataById("66a91f79a760e1475cb110b6");
-    //     console.log("response data for job", response);
-    //   }
-    //   fetchJobData();
-    // }, []);
-
-    // function to get skill match score
-    // useEffect(() => {
-    //   async function fetchSkillMatchScore() {
-    //     let response = await CrudService.generateSkillMatchScore({
-    //       "job_id": "66a91f79a760e1475cb110b8",
-    //       "profile_id": "66aa9eafd221d572880a58a1"
-    //     });
-    //     console.log("response data for skill match score", response);
-    //   }
-    //   fetchSkillMatchScore();
-    // }, []);
-
-    // function to get the course outline
-    // useEffect(() => {
-    //   // this function should be called when the skill match score is generated.
-    //   // the job_id should be the one from the job that the user has already visited.
-    //   async function fetchCourseOutline() {
-    //     let response = await CrudService.generateCourseOutline({
-    //       "job_id": "66b0dd0c5a072fd2ce4d045a",
-    //       "profile_id": "66aa9eafd221d572880a58a1"
-    //     });
-    //     console.log("response data for course outline", response);
-    //   }
-    //   fetchCourseOutline();
-    // }, []);
-
-    // function to get the cover letter
-    // useEffect(() => {
-    //   // this function should be called when the skill match score is generated.
-    //   // the job_id should be the one from the job that the user has already visited.
-    //   async function fetchCoverLetter() {
-    //     let response = await CrudService.generateCoverLetter({
-    //       "job_id": "66b0dd0c5a072fd2ce4d045a",
-    //       "profile_id": "66aa9eafd221d572880a58a1"
-    //     });
-    //     console.log("response data for cover letter", response);
-    //   }
-    //   fetchCoverLetter();
-    // }, []);
-
-    // function to get the available courses
-    // useEffect(() => {
-    //   async function fetchAvailableCourses() {
-    //     let response = await CrudService.getAvailableCourses("66aa9eafd221d572880a58a1"); // user_id
-    //     console.log("response data for available courses", response);
-    //   }
-    //   fetchAvailableCourses();
-    // }, []);
-
-    // function to get the visited jobs
-    // useEffect(() => {
-    //   async function fetchVisitedJobs() {
-    //     let response = await CrudService.getVisitedJobs("66aa9eafd221d572880a58a1"); // user_id
-    //     console.log("response data for visited jobs", response);
-    //   }
-    //   fetchVisitedJobs();
-    // }, []);
-
-
 
 
     // Action buttons for the BookingCard
@@ -334,7 +233,7 @@ function ExpandedJob() {
                                 </MDBox>
                             ) : null
                         }
-                        {/* Ceo Information */}
+                        {/* CEO Information */}
                         {job.ceo_name !== null && job.ceo_name != "" && job.ceo_photo_url !== null && job.ceo_photo_url != "" ? (
                             <MDBox
                                 key="ceo_block"
@@ -695,8 +594,6 @@ function ExpandedJob() {
                     }}
                 >
                     Do you want QUSkillBridge to help you prepare for this job?
-
-
                     <MDButton
                         variant="contained"
                         color="secondary"

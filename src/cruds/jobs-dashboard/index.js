@@ -6,7 +6,7 @@
 * Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
 * Copyright 2022 Creative Tim (https://www.creative-tim.com)
 
-Coded by www.creative-tim.com
+Coded by www.nikam-shreyas.com
 
  =========================================================
 
@@ -19,7 +19,6 @@ import Card from "@mui/material/Card";
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
-import MDAlert from "components/MDAlert";
 
 // Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -30,21 +29,12 @@ import MDButton from "components/MDButton";
 import MDAvatar from "components/MDAvatar";
 import { Tooltip, IconButton, Icon } from "@mui/material";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-
 import CrudService from "services/cruds-service";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "context";
 
-import { AbilityContext } from "Can";
-import { useAbility } from "@casl/react";
-import { Can } from "Can";
-import { subject } from "@casl/ability";
-
-import getId from "services/helper-service";
 
 function JobsDashboard() {
     const { setIsAuthenticated, getCurrentUser } = useContext(AuthContext);
@@ -141,7 +131,6 @@ function JobsDashboard() {
             },
             { Header: "location", accessor: "location", width: "15%" },
             { Header: "job type", accessor: "job_type", width: "15%" },
-            // { Header: "date posted", accessor: "date_posted", width: "15%" },
             { Header: "description", accessor: "description", width: "15%" },
             { Header: "company url", accessor: "company_url", width: "15%" },
             {

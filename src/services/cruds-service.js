@@ -249,7 +249,6 @@ class CrudService {
 
   generateSkillMatchScore = async (payload) => {
     const endpoint = `${fastapiUrl}/generate_skill_match_score/`;
-    console.log(endpoint, payload);
     const response = await axios.post(endpoint, payload);
     return response.data;
   }
