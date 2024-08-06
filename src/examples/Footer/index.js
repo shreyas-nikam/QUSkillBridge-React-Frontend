@@ -60,7 +60,7 @@ function Footer({ company, links }) {
         fontSize={size.sm}
         px={1.5}
       >
-        &copy; {new Date().getFullYear()}, powered by quantuniversity
+        &copy; {new Date().getFullYear()}, Powered by QuantUniversity. All rights reserved.
       </MDBox>
     </MDBox>
   );

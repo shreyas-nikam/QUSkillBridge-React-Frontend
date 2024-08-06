@@ -186,6 +186,12 @@ const pageRoutes = [
         subject: "users",
       },
       {
+        name: "jobs-dashboard",
+        route: "/examples-api/jobs-dashboard",
+        icon: "list",
+        subject: "users",
+      },
+      {
         name: "role-management",
         route: "/examples-api/role-management",
         icon: "list",

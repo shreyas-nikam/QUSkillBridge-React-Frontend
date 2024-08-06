@@ -1,5 +1,7 @@
 import HttpService from "./http.service";
-import FastApiService from "./fastapi.service";
+import axios from "axios";
+
+const fastapiUrl = "http://localhost:8000";
 
 class CrudService {
   // users requests
@@ -189,8 +191,13 @@ class CrudService {
     return await HttpService.get(endpoint);
   }
 
-  getJob = async (id) => {
+  getJobDataById = async (id) => {
     const endpoint = `jobs/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getVisitedJobs = async (id) => {
+    const endpoint = `jobs/visitedJobs/${user_id}`;
     return await HttpService.get(endpoint);
   }
 
@@ -205,27 +212,37 @@ class CrudService {
     return await HttpService.get(endpoint);
   }
 
+  getAvailableCourses = async (id) => {
+    const endpoint = `courses/availableCourses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
   // update profile
   updateProfile = async (payload) => {
-    console.log("payload", payload);
-    const endpoint = `get_profile_suggestions/`;
-    return await FastApiService.post(endpoint, payload);
+    const endpoint = `${fastapiUrl}/get_profile_suggestions/`;
+    response = await axios.post(endpoint, payload);
+    return response.data;
   }
 
   generateCourseOutline = async (payload) => {
-    const endpoint = `generate_course_outline/`;
-    return await FastApiService.post(endpoint, payload);
+    const endpoint = `${fastapiUrl}/generate_course_outline/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
   }
 
   generateCoverLetter = async (payload) => {
-    const endpoint = `generate_course_outline/`;
-    return await FastApiService.post(endpoint, payload);
+    const endpoint = `${fastapiUrl}/generate_cover_letter/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
   }
 
   generateSkillMatchScore = async (payload) => {
-    const endpoint = `generate_skill_match_score/`;
-    return await FastApiService.post(endpoint, payload);
+    const endpoint = `${fastapiUrl}/generate_skill_match_score/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
   }
+
+
 
 
 }

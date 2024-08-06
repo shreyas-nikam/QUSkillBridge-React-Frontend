@@ -89,7 +89,7 @@ function AllProjects() {
       <MDBox width="calc(100% - 48px)" position="absolute" top="1.75rem">
         <DashboardNavbar light absolute />
       </MDBox>
-      <Header />
+      {/* <Header /> */}
       <MDBox pb={3}>
         <Grid container alignItems="center">
           <Grid item xs={12} md={7}>
