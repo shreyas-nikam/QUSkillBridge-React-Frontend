@@ -197,402 +197,411 @@ const routes = [
       },
     ],
   },
-  { type: "title", title: "Pages", key: "title-pages" },
   {
     type: "collapse",
-    name: "Pages",
-    key: "pages",
-    icon: <Icon fontSize="medium">image</Icon>,
-    collapse: [
-      {
-        name: "Profile",
-        key: "profile",
-        collapse: [
-          {
-            name: "Profile Overview",
-            key: "profile-overview",
-            route: "/pages/profile/profile-overview",
-            component: <ProfileOverview />,
-          },
-          {
-            name: "All Projects",
-            key: "all-projects",
-            route: "/pages/profile/all-projects",
-            component: <AllProjects />,
-          },
-        ],
-      },
-      {
-        name: "Users",
-        key: "users",
-        collapse: [
-          {
-            name: "New User",
-            key: "new-user",
-            route: "/pages/users/new-user",
-            component: <NewUser />,
-          },
-        ],
-      },
-      {
-        name: "Account",
-        key: "account",
-        collapse: [
-          {
-            name: "Settings",
-            key: "settings",
-            route: "/pages/account/settings",
-            component: <Settings />,
-          },
-          {
-            name: "Billing",
-            key: "billing",
-            route: "/pages/account/billing",
-            component: <Billing />,
-          },
-          {
-            name: "Invoice",
-            key: "invoice",
-            route: "/pages/account/invoice",
-            component: <Invoice />,
-          },
-        ],
-      },
-      {
-        name: "Projects",
-        key: "projects",
-        collapse: [
-          {
-            name: "Timeline",
-            key: "timeline",
-            route: "/pages/projects/timeline",
-            component: <Timeline />,
-          },
-        ],
-      },
-      {
-        name: "Pricing Page",
-        key: "pricing-page",
-        route: "/pages/pricing-page",
-        component: <PricingPage />,
-      },
-      { name: "RTL", key: "rtl", route: "/pages/rtl", component: <RTL /> },
-      { name: "Widgets", key: "widgets", route: "/pages/widgets", component: <Widgets /> },
-      { name: "Charts", key: "charts", route: "/pages/charts", component: <Charts /> },
-      {
-        name: "Notfications",
-        key: "notifications",
-        route: "/pages/notifications",
-        component: <Notifications />,
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Applications",
-    key: "applications",
-    icon: <Icon fontSize="medium">apps</Icon>,
-    collapse: [
-      {
-        name: "Kanban",
-        key: "kanban",
-        route: "/applications/kanban",
-        component: <Kanban />,
-      },
-      {
-        name: "Wizard",
-        key: "wizard",
-        route: "/applications/wizard",
-        component: <Wizard />,
-      },
-      {
-        name: "Data Tables",
-        key: "data-tables",
-        route: "/applications/data-tables",
-        component: <DataTables />,
-      },
-      {
-        name: "Calendar",
-        key: "calendar",
-        route: "/applications/calendar",
-        component: <Calendar />,
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Ecommerce",
-    key: "ecommerce",
-    icon: <Icon fontSize="medium">shopping_basket</Icon>,
-    collapse: [
-      {
-        name: "Products",
-        key: "products",
-        collapse: [
-          {
-            name: "New Product",
-            key: "new-product",
-            route: "/ecommerce/products/new-product",
-            component: <NewProduct />,
-          },
-          {
-            name: "Edit Product",
-            key: "edit-product",
-            route: "/ecommerce/products/edit-product",
-            component: <EditProduct />,
-          },
-          {
-            name: "Product Page",
-            key: "product-page",
-            route: "/ecommerce/products/product-page",
-            component: <ProductPage />,
-          },
-        ],
-      },
-      {
-        name: "Orders",
-        key: "orders",
-        collapse: [
-          {
-            name: "Order List",
-            key: "order-list",
-            route: "/ecommerce/orders/order-list",
-            component: <OrderList />,
-          },
-          {
-            name: "Order Details",
-            key: "order-details",
-            route: "/ecommerce/orders/order-details",
-            component: <OrderDetails />,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Authentication",
-    key: "authentication",
-    icon: <Icon fontSize="medium">content_paste</Icon>,
-    collapse: [
-      {
-        name: "Sign In",
-        key: "sign-in",
-        collapse: [
-          {
-            name: "Basic",
-            key: "basic",
-            route: "/authentication/sign-in/basic",
-            component: <SignInBasic />,
-          },
-          {
-            name: "Cover",
-            key: "cover",
-            route: "/authentication/sign-in/cover",
-            component: <SignInCover />,
-          },
-          {
-            name: "Illustration",
-            key: "illustration",
-            route: "/authentication/sign-in/illustration",
-            component: <SignInIllustration />,
-          },
-        ],
-      },
-      {
-        name: "Sign Up",
-        key: "sign-up",
-        collapse: [
-          {
-            name: "Cover",
-            key: "cover",
-            route: "/authentication/sign-up/cover",
-            component: <SignUpCover />,
-          },
-        ],
-      },
-      {
-        name: "Reset Password",
-        key: "reset-password",
-        collapse: [
-          {
-            name: "Cover",
-            key: "cover",
-            route: "/authentication/reset-password/cover",
-            component: <ResetCover />,
-          },
-        ],
-      },
-    ],
-  },
-  { type: "divider", key: "divider-1" },
-  { type: "title", title: "Docs", key: "title-docs" },
-  {
-    type: "collapse",
-    name: "Basic",
-    key: "basic",
-    icon: <Icon fontSize="medium">upcoming</Icon>,
-    collapse: [
-      {
-        name: "Getting Started",
-        key: "getting-started",
-        collapse: [
-          {
-            name: "Overview",
-            key: "overview",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/overview/material-dashboard/",
-          },
-          {
-            name: "License",
-            key: "license",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/license/material-dashboard/",
-          },
-          {
-            name: "Quick Start",
-            key: "quick-start",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/quick-start/material-dashboard/",
-          },
-          {
-            name: "Build Tools",
-            key: "build-tools",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/build-tools/material-dashboard/",
-          },
-        ],
-      },
-      {
-        name: "Foundation",
-        key: "foundation",
-        collapse: [
-          {
-            name: "Colors",
-            key: "colors",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/colors/material-dashboard/",
-          },
-          {
-            name: "Grid",
-            key: "grid",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/grid/material-dashboard/",
-          },
-          {
-            name: "Typography",
-            key: "base-typography",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/base-typography/material-dashboard/",
-          },
-          {
-            name: "Borders",
-            key: "borders",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/borders/material-dashboard/",
-          },
-          {
-            name: "Box Shadows",
-            key: "box-shadows",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/box-shadows/material-dashboard/",
-          },
-          {
-            name: "Functions",
-            key: "functions",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/functions/material-dashboard/",
-          },
-          {
-            name: "Routing System",
-            key: "routing-system",
-            href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/routing-system/material-dashboard/",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Components",
-    key: "components",
-    icon: <Icon fontSize="medium">view_in_ar</Icon>,
-    collapse: [
-      {
-        name: "Alerts",
-        key: "alerts",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/alerts/material-dashboard/",
-      },
-      {
-        name: "Avatar",
-        key: "avatar",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/avatar/material-dashboard/",
-      },
-      {
-        name: "Badge",
-        key: "badge",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/badge/material-dashboard/",
-      },
-      {
-        name: "Badge Dot",
-        key: "badge-dot",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/badge-dot/material-dashboard/",
-      },
-      {
-        name: "Box",
-        key: "box",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/box/material-dashboard/",
-      },
-      {
-        name: "Buttons",
-        key: "buttons",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/buttons/material-dashboard/",
-      },
-      {
-        name: "Date Picker",
-        key: "date-picker",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/datepicker/material-dashboard/",
-      },
-      {
-        name: "Dropzone",
-        key: "dropzone",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/dropzone/material-dashboard/",
-      },
-      {
-        name: "Editor",
-        key: "editor",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/quill/material-dashboard/",
-      },
-      {
-        name: "Input",
-        key: "input",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/input/material-dashboard/",
-      },
-      {
-        name: "Pagination",
-        key: "pagination",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/pagination/material-dashboard/",
-      },
-      {
-        name: "Progress",
-        key: "progress",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/progress/material-dashboard/",
-      },
-      {
-        name: "Snackbar",
-        key: "snackbar",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/snackbar/material-dashboard/",
-      },
-      {
-        name: "Social Button",
-        key: "social-button",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/social-buttons/material-dashboard/",
-      },
-      {
-        name: "Typography",
-        key: "typography",
-        href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/typography/material-dashboard/",
-      },
-    ],
-  },
-  {
-    type: "collapse",
-    name: "Change Log",
-    key: "changelog",
-    href: "https://github.com/creativetimofficial/ct-material-dashboard-pro-react/blob/main/CHANGELOG.md",
-    icon: <Icon fontSize="medium">receipt_long</Icon>,
+    name: "QUSkillBridge",
+    key: "jobs-dashboard",
+    route: "examples-api/jobs-dashboard",
+    component: <JobsDashboard />,
+    icon: <Icon fontSize="medium">dashboard</Icon>,
     noCollapse: true,
   },
+  // { type: "title", title: "Pages", key: "title-pages" },
+  // {
+  //   type: "collapse",
+  //   name: "Pages",
+  //   key: "pages",
+  //   icon: <Icon fontSize="medium">image</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Profile",
+  //       key: "profile",
+  //       collapse: [
+  //         {
+  //           name: "Profile Overview",
+  //           key: "profile-overview",
+  //           route: "/pages/profile/profile-overview",
+  //           component: <ProfileOverview />,
+  //         },
+  //         {
+  //           name: "All Projects",
+  //           key: "all-projects",
+  //           route: "/pages/profile/all-projects",
+  //           component: <AllProjects />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Users",
+  //       key: "users",
+  //       collapse: [
+  //         {
+  //           name: "New User",
+  //           key: "new-user",
+  //           route: "/pages/users/new-user",
+  //           component: <NewUser />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Account",
+  //       key: "account",
+  //       collapse: [
+  //         {
+  //           name: "Settings",
+  //           key: "settings",
+  //           route: "/pages/account/settings",
+  //           component: <Settings />,
+  //         },
+  //         {
+  //           name: "Billing",
+  //           key: "billing",
+  //           route: "/pages/account/billing",
+  //           component: <Billing />,
+  //         },
+  //         {
+  //           name: "Invoice",
+  //           key: "invoice",
+  //           route: "/pages/account/invoice",
+  //           component: <Invoice />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Projects",
+  //       key: "projects",
+  //       collapse: [
+  //         {
+  //           name: "Timeline",
+  //           key: "timeline",
+  //           route: "/pages/projects/timeline",
+  //           component: <Timeline />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Pricing Page",
+  //       key: "pricing-page",
+  //       route: "/pages/pricing-page",
+  //       component: <PricingPage />,
+  //     },
+  //     { name: "RTL", key: "rtl", route: "/pages/rtl", component: <RTL /> },
+  //     { name: "Widgets", key: "widgets", route: "/pages/widgets", component: <Widgets /> },
+  //     { name: "Charts", key: "charts", route: "/pages/charts", component: <Charts /> },
+  //     {
+  //       name: "Notfications",
+  //       key: "notifications",
+  //       route: "/pages/notifications",
+  //       component: <Notifications />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Applications",
+  //   key: "applications",
+  //   icon: <Icon fontSize="medium">apps</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Kanban",
+  //       key: "kanban",
+  //       route: "/applications/kanban",
+  //       component: <Kanban />,
+  //     },
+  //     {
+  //       name: "Wizard",
+  //       key: "wizard",
+  //       route: "/applications/wizard",
+  //       component: <Wizard />,
+  //     },
+  //     {
+  //       name: "Data Tables",
+  //       key: "data-tables",
+  //       route: "/applications/data-tables",
+  //       component: <DataTables />,
+  //     },
+  //     {
+  //       name: "Calendar",
+  //       key: "calendar",
+  //       route: "/applications/calendar",
+  //       component: <Calendar />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Ecommerce",
+  //   key: "ecommerce",
+  //   icon: <Icon fontSize="medium">shopping_basket</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Products",
+  //       key: "products",
+  //       collapse: [
+  //         {
+  //           name: "New Product",
+  //           key: "new-product",
+  //           route: "/ecommerce/products/new-product",
+  //           component: <NewProduct />,
+  //         },
+  //         {
+  //           name: "Edit Product",
+  //           key: "edit-product",
+  //           route: "/ecommerce/products/edit-product",
+  //           component: <EditProduct />,
+  //         },
+  //         {
+  //           name: "Product Page",
+  //           key: "product-page",
+  //           route: "/ecommerce/products/product-page",
+  //           component: <ProductPage />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Orders",
+  //       key: "orders",
+  //       collapse: [
+  //         {
+  //           name: "Order List",
+  //           key: "order-list",
+  //           route: "/ecommerce/orders/order-list",
+  //           component: <OrderList />,
+  //         },
+  //         {
+  //           name: "Order Details",
+  //           key: "order-details",
+  //           route: "/ecommerce/orders/order-details",
+  //           component: <OrderDetails />,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Authentication",
+  //   key: "authentication",
+  //   icon: <Icon fontSize="medium">content_paste</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Sign In",
+  //       key: "sign-in",
+  //       collapse: [
+  //         {
+  //           name: "Basic",
+  //           key: "basic",
+  //           route: "/authentication/sign-in/basic",
+  //           component: <SignInBasic />,
+  //         },
+  //         {
+  //           name: "Cover",
+  //           key: "cover",
+  //           route: "/authentication/sign-in/cover",
+  //           component: <SignInCover />,
+  //         },
+  //         {
+  //           name: "Illustration",
+  //           key: "illustration",
+  //           route: "/authentication/sign-in/illustration",
+  //           component: <SignInIllustration />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Sign Up",
+  //       key: "sign-up",
+  //       collapse: [
+  //         {
+  //           name: "Cover",
+  //           key: "cover",
+  //           route: "/authentication/sign-up/cover",
+  //           component: <SignUpCover />,
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Reset Password",
+  //       key: "reset-password",
+  //       collapse: [
+  //         {
+  //           name: "Cover",
+  //           key: "cover",
+  //           route: "/authentication/reset-password/cover",
+  //           component: <ResetCover />,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // { type: "divider", key: "divider-1" },
+  // { type: "title", title: "Docs", key: "title-docs" },
+  // {
+  //   type: "collapse",
+  //   name: "Basic",
+  //   key: "basic",
+  //   icon: <Icon fontSize="medium">upcoming</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Getting Started",
+  //       key: "getting-started",
+  //       collapse: [
+  //         {
+  //           name: "Overview",
+  //           key: "overview",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/overview/material-dashboard/",
+  //         },
+  //         {
+  //           name: "License",
+  //           key: "license",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/license/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Quick Start",
+  //           key: "quick-start",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/quick-start/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Build Tools",
+  //           key: "build-tools",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/build-tools/material-dashboard/",
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Foundation",
+  //       key: "foundation",
+  //       collapse: [
+  //         {
+  //           name: "Colors",
+  //           key: "colors",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/colors/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Grid",
+  //           key: "grid",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/grid/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Typography",
+  //           key: "base-typography",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/base-typography/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Borders",
+  //           key: "borders",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/borders/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Box Shadows",
+  //           key: "box-shadows",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/box-shadows/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Functions",
+  //           key: "functions",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/functions/material-dashboard/",
+  //         },
+  //         {
+  //           name: "Routing System",
+  //           key: "routing-system",
+  //           href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/routing-system/material-dashboard/",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Components",
+  //   key: "components",
+  //   icon: <Icon fontSize="medium">view_in_ar</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Alerts",
+  //       key: "alerts",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/alerts/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Avatar",
+  //       key: "avatar",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/avatar/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Badge",
+  //       key: "badge",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/badge/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Badge Dot",
+  //       key: "badge-dot",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/badge-dot/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Box",
+  //       key: "box",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/box/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Buttons",
+  //       key: "buttons",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/buttons/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Date Picker",
+  //       key: "date-picker",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/datepicker/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Dropzone",
+  //       key: "dropzone",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/dropzone/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Editor",
+  //       key: "editor",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/quill/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Input",
+  //       key: "input",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/input/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Pagination",
+  //       key: "pagination",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/pagination/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Progress",
+  //       key: "progress",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/progress/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Snackbar",
+  //       key: "snackbar",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/snackbar/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Social Button",
+  //       key: "social-button",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/social-buttons/material-dashboard/",
+  //     },
+  //     {
+  //       name: "Typography",
+  //       key: "typography",
+  //       href: "hhttps://material-dashboard-react-laravel-docs.creative-tim.com/react/typography/material-dashboard/",
+  //     },
+  //   ],
+  // },
+  // {
+  //   type: "collapse",
+  //   name: "Change Log",
+  //   key: "changelog",
+  //   href: "https://github.com/creativetimofficial/ct-material-dashboard-pro-react/blob/main/CHANGELOG.md",
+  //   icon: <Icon fontSize="medium">receipt_long</Icon>,
+  //   noCollapse: true,
+  // },
 ];
 
 export default routes;
