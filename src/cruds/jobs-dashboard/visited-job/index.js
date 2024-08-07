@@ -138,7 +138,7 @@ function VisitedJob() {
             datasets: {
                 label: "Skill Count",
                 backgroundColors: ["info", "error"],
-                data: [response.skills_in_job.length - response.skill_delta.length, skill_delta.length],
+                data: [response.job_description_required_skills.length - response.skills_to_be_learned.length, response.skills_to_be_learned.length],
             },
         });
     }
