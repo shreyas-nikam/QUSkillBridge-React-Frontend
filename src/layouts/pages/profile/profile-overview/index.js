@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 // @mui material components
@@ -24,10 +25,12 @@ import Divider from "@mui/material/Divider";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import { Tooltip, IconButton, Icon } from "@mui/material";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
+
 
 // Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -36,6 +39,8 @@ import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import ProfilesList from "examples/Lists/ProfilesList";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+import DataTable from "examples/Tables/DataTable";
+
 
 // Overview page components
 import Header from "layouts/pages/profile/components/Header";
@@ -57,8 +62,13 @@ import team4 from "assets/images/team-4.jpg";
 
 import AuthService from "services/auth-service";
 import getId from "services/helper-service";
+import CrudService from "services/cruds-service";
+import MDAvatar from "components/MDAvatar";
 
 function Overview() {
+
+  const [visitedJobs, setVisitedJobs] = useState([]);
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     id: "",
@@ -112,7 +122,77 @@ function Overview() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      if (!user.id || user.id === "") return;
+      const response = await CrudService.getVisitedJobs(user.id);
+      console.log("Visited Jobs", response);
+      setVisitedJobs(response);
+    })();
+  }, [user.id]);
 
+
+  const clickExploreHandler = (e, id) => {
+    navigate(`/jobs-dashboard/visited-job/${id}`)
+  }
+
+  const dataTableData = {
+    columns: [
+      // add the company logo
+      {
+        Header: "",
+        accessor: "job.logo_photo_url",
+        width: "15%",
+        disableSortBy: true,
+        Cell: ({ cell: { value } }) => {
+          return (
+            <MDAvatar src={value} alt="profile-image" size="sm" shadow="sm" />
+          )
+        }
+      },
+      // { Header: "ID", accessor: "_id", width: "25%" },
+
+      {
+        Header: "Company",
+        accessor: "job.company",
+        width: "25%",
+      },
+      {
+        Header: "job title",
+        accessor: "job.title",
+        width: "25%",
+      },
+      {
+        Header: "Skill Match Score",
+        accessor: "skill_match_score",
+        width: "25%",
+        Cell: ({ cell: { value } }) => {
+          return (
+            <MDTypography variant="button" color="text">
+              {/* cast the value to integer, round it off to two decimal places and add a percent sign at the end */}
+              {parseInt(value).toFixed(2)} %
+
+            </MDTypography>
+          );
+        }
+      },
+      {
+        Header: "Explore Job",
+        disableSortBy: true,
+        accessor: "",
+        Cell: (info) => {
+          return (
+            <Tooltip title="Delete Category" >
+              <Icon onClick={(e) => clickExploreHandler(e, info.cell.row.original._id)}>
+                explore
+              </Icon>
+            </Tooltip>
+          )
+        }
+      },
+    ],
+    rows: visitedJobs,
+  };
 
 
   return (
@@ -163,6 +243,20 @@ function Overview() {
             </Grid>
           </Grid>
         </MDBox>
+
+        {/* Show the jobs visited by the user */}
+        {
+          visitedJobs.length > 0 && (
+            <MDBox pt={2} px={2} lineHeight={1.25}>
+              <MDTypography variant="h6" fontWeight="medium">
+                Visited jobs
+              </MDTypography>
+              <MDBox mb={1}>
+                <DataTable table={dataTableData} />
+              </MDBox>
+            </MDBox>
+          )
+        }
         <MDBox pt={2} px={2} lineHeight={1.25}>
           <MDTypography variant="h6" fontWeight="medium">
             Projects

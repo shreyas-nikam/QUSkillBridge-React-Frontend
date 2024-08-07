@@ -197,7 +197,8 @@ class CrudService {
   }
 
   getVisitedJobs = async (id) => {
-    const endpoint = `jobs/visitedJobs/${user_id}`;
+    const endpoint = `jobs/visitedJobs/${id}`;
+    console.log("Id passed", id);
     return await HttpService.get(endpoint);
   }
 
