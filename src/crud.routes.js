@@ -25,6 +25,8 @@ import EditUser from "cruds/user-management/edit-user";
 import NewUser from "cruds/user-management/new-user";
 import EditPersona from "cruds/persona-management/edit-persona";
 import NewPersona from "cruds/persona-management/new-persona";
+import CourseHome from "layouts/pages/course-content/components/CourseHome";
+import CourseContent from "layouts/pages/course-content";
 
 /** 
   All of the routes for the Material Dashboard 2 PRO React are added here,
@@ -51,6 +53,13 @@ import NewPersona from "cruds/persona-management/new-persona";
 // Material Dashboard 2 PRO React layouts
 
 const crudRoutes = [
+  
+  {
+    key: "course-content",
+    route: "/course-content",
+    component: <CourseContent />,
+    type: "title",
+  },
   {
     key: "new-category",
     route: "/category-management/new-category",

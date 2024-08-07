@@ -51,16 +51,16 @@ function Analytics() {
 
   const { setIsAuthenticated, getCurrentUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    async function checkToken() {
-      let user = await getCurrentUser();
-      if (!user) {
-        setIsAuthenticated(false);
-        localStorage.removeItem("token");
-      }
-    }
-    checkToken();
-  }, []);
+  // useEffect(() => {
+  //   async function checkToken() {
+  //     let user = await getCurrentUser();
+  //     if (!user) {
+  //       setIsAuthenticated(false);
+  //       localStorage.removeItem("token");
+  //     }
+  //   }
+  //   checkToken();
+  // }, []);
 
   // Action buttons for the BookingCard
   const actionButtons = (
@@ -76,7 +76,12 @@ function Analytics() {
         </MDTypography>
       </Tooltip>
       <Tooltip title="Edit" placement="bottom">
-        <MDTypography variant="body1" color="info" lineHeight={1} sx={{ cursor: "pointer", mx: 3 }}>
+        <MDTypography
+          variant="body1"
+          color="info"
+          lineHeight={1}
+          sx={{ cursor: "pointer", mx: 3 }}
+        >
           <Icon color="inherit">edit</Icon>
         </MDTypography>
       </Tooltip>

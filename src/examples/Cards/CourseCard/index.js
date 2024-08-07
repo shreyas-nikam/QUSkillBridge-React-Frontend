@@ -28,8 +28,14 @@ import Icon from "@mui/material/Icon";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
+import { useNavigate } from "react-router-dom";
+
 
 function CourseCard({ image, title, description, label, action }) {
+  const navigate = useNavigate();
+  const clickExploreHandler = () => {
+    navigate("src/pages/account/Course Content/components/CourseHome");
+};
   return (
     <Card
       sx={{
@@ -98,7 +104,7 @@ function CourseCard({ image, title, description, label, action }) {
         
         <MDBox mt={2} mb={1} display="flex"
         justifyContent="space-between" alignItems="center">
-              <MDButton variant="outlined" color="info" fullWidth>
+              <MDButton variant="outlined" color="info" fullWidth onClick={clickExploreHandler}>
                 Explore Course
               </MDButton>
             </MDBox>

@@ -15,7 +15,6 @@ Coded by www.creative-tim.com
 
 import { useState, useEffect } from "react";
 
-
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
@@ -34,8 +33,9 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
-import ProfilesList from "examples/Lists/ProfilesList";
-import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+import JobList from "examples/Lists/JobList";
+import LocationList from "examples/Lists/LocationList";
+//import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import BaseLayout from "layouts/pages/account/components/BaseLayout";
 
 // Overview page components
@@ -56,12 +56,12 @@ import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
 import ResumeInformation from "../ResumeInfo";
 
-
 import AuthService from "services/auth-service";
 import getId from "services/helper-service";
+import EducationList from "examples/Lists/EducationList";
+import { Card } from "@mui/material";
 
 function Overview() {
-
   const [user, setUser] = useState({
     id: "",
     name: "",
@@ -75,10 +75,10 @@ function Overview() {
     summary: "",
     headline: "",
     skills: "",
-    preferred_jobs: "",
-    preferred_locations: "",
-    education: "",
-    experience: "",
+    preferred_jobs: [],
+    preferred_locations: [],
+    education: [],
+    experience: [],
     location_name: "",
     resume_location: "",
     jobs_visited: "",
@@ -88,6 +88,46 @@ function Overview() {
   useEffect(() => {
     (async () => {
       const response = await AuthService.getProfile();
+      let modified_preferred_jobs = [];
+      response.data.attributes.preferred_jobs.map((job) => {
+        modified_preferred_jobs.push({
+          preferred_job: job,
+          action: {
+            type: "internal",
+            route: "/pages/profile/profile-overview",
+            color: "info",
+            label: "Edit",
+          },
+        });
+      });
+
+      let modified_preferred_locations = [];
+      response.data.attributes.preferred_locations.map((location) => {
+        modified_preferred_locations.push({
+          preferred_location: location,
+          action: {
+            type: "internal",
+            route: "/pages/profile/profile-overview",
+            color: "info",
+            label: "Edit",
+          },
+        });
+      });
+
+      let modified_education = [];
+      response.data.attributes.education.map((education) => {
+        modified_education.push({
+          education_new: education,
+          action: {
+            type: "internal",
+            route: "/pages/profile/profile-overview",
+            color: "info",
+            label: "Edit",
+          },
+        });
+      });
+
+      console.log("experience", response.data.attributes.experience);
       setUser((prevUser) => ({
         ...prevUser,
         id: response.data.id,
@@ -102,9 +142,9 @@ function Overview() {
         summary: response.data.attributes.summary,
         headline: response.data.attributes.headline,
         skills: response.data.attributes.skills,
-        preferred_jobs: response.data.attributes.preferred_jobs,
-        preferred_locations: response.data.attributes.preferred_locations,
-        education: response.data.attributes.education,
+        preferred_jobs: modified_preferred_jobs,
+        preferred_locations: modified_preferred_locations,
+        education: modified_education,
         experience: response.data.attributes.experience,
         location_name: response.data.attributes.location_name,
         resume_location: response.data.attributes.resume_location,
@@ -114,76 +154,79 @@ function Overview() {
     })();
   }, []);
 
-
-
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox mb={2} />
-      <Header user={user}>
-        <MDBox mt={5} mb={3}>
-          <Grid container spacing={2}>
-           
-            <Grid item xs={12} md={6} xl={4} sx={{ display: "flex" }}>
-              <Divider orientation="vertical" sx={{ ml: -2, mr: 1 }} />
-              <ProfileInfoCard
-                title="Profile Summary"
-                description="Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
-                info={{
-                  fullName: "Alec M. Thompson",
-                  mobile: "(44) 123 1234 123",
-                  email: "alecthompson@mail.com",
-                  location: "USA",
-                }}
-                social={[
-                  {
-                    link: "https://www.facebook.com/CreativeTim/",
-                    icon: <FacebookIcon />,
-                    color: "facebook",
-                  },
-                  {
-                    link: "https://twitter.com/creativetim",
-                    icon: <TwitterIcon />,
-                    color: "twitter",
-                  },
-                  {
-                    link: "https://www.instagram.com/creativetimofficial/",
-                    icon: <InstagramIcon />,
-                    color: "instagram",
-                  },
-                ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
-                shadow={false}
-              />
-              <Divider orientation="vertical" sx={{ mx: 0 }} />
-            </Grid>
-            <Grid item xs={12} xl={4}>
-              <ProfilesList title="Preferred Jobs" profiles={profileJobData} shadow={false} />
-               <Divider orientation="vertical" sx={{ ml: 20, mr: -1 }} />
-            </Grid>
-            <Grid item xs={12} xl={4}>
-              <ProfilesList title="Preferred locations" profiles={profileJobLocationData} shadow={false} />
-               <Divider orientation="vertical" sx={{ ml: 20, mr: -1 }} />
-            </Grid>
-          </Grid> 
-          </MDBox>
-          <MDBox mb={3}>
-          
-        
-        </MDBox>
-        
-      </Header>
-      <MDBox mt={3} mb={3}>
-      <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <ResumeInformation />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              Skill tags
-            </Grid>
+      <Header user={user}></Header>
+      <MDBox mt={5} mb={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6} lg={8} sx={{ display: "flex" }}>
+            <Divider orientation="vertical" sx={{ ml: -1, mr: 1 }} />
+            <ProfileInfoCard
+              title="Profile Summary"
+              description={user.summary}
+              info={{
+                name: user.name,
+                email: user.email,
+                location: user.location_name,
+              }}
+              social={[
+                {
+                  link: "https://www.facebook.com/CreativeTim/",
+                  icon: <FacebookIcon />,
+                  color: "facebook",
+                },
+                {
+                  link: "https://twitter.com/creativetim",
+                  icon: <TwitterIcon />,
+                  color: "twitter",
+                },
+                {
+                  link: "https://www.instagram.com/creativetimofficial/",
+                  icon: <InstagramIcon />,
+                  color: "instagram",
+                },
+              ]}
+              action={{ route: "", tooltip: "Edit Profile" }}
+              shadow={false}
+            />
+            <Divider orientation="horizontal" sx={{ mx: 1 }} />
           </Grid>
-          </MDBox>
+          <Grid item xs={12} md={6} lg={4} sx={{ display: "flex" }}>
+            <EducationList title="Experiences" education={user.education} />
+          </Grid>
+
+          <Grid item xs={12} xl={3}>
+            <JobList title="Preferred Jobs" jobs={user.preferred_jobs} />
+
+            <Divider orientation="vertical" sx={{ ml: 20, mr: -1 }} />
+          </Grid>
+          <Grid item xs={12} xl={3}>
+            <LocationList
+              title="Preferred Locations"
+              locations={user.preferred_locations}
+            />
+            <Divider orientation="vertical" sx={{ ml: 20, mr: -1 }} />
+          </Grid>
+          <Grid item xs={12} xl={6}>
+            <EducationList title="Experiences" education={user.education} />
+
+            <Divider orientation="vertical" sx={{ ml: 20, mr: -1 }} />
+          </Grid>
+        </Grid>
+      </MDBox>
+
+      <MDBox mt={3} mb={3}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <ResumeInformation />
+          </Grid>
+          <Grid item xs={12} md={5}>
+            Skill tags
+          </Grid>
+        </Grid>
+      </MDBox>
       <Footer />
     </DashboardLayout>
   );

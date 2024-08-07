@@ -25,6 +25,7 @@ const salesTableData = [
     sales: 2500,
     value: "$230,900",
     bounce: "29.9%",
+    
   },
   {
     country: [DE, "germany"],

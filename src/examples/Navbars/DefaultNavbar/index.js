@@ -90,230 +90,254 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
-  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse }) => (
-    <DefaultNavbarDropdown
-      key={name}
-      name={name}
-      icon={icon}
-      href={href}
-      route={route}
-      collapse={Boolean(collapse)}
-      onMouseEnter={({ currentTarget }) => {
-        if (collapse) {
-          setDropdown(currentTarget);
-          setDropdownEl(currentTarget);
-          setDropdownName(name);
-        }
-      }}
-      onMouseLeave={() => collapse && setDropdown(null)}
-      light={light}
-    />
-  ));
+  const renderNavbarItems = routes.map(
+    ({ name, icon, href, route, collapse }) => (
+      <DefaultNavbarDropdown
+        key={name}
+        name={name}
+        icon={icon}
+        href={href}
+        route={route}
+        collapse={Boolean(collapse)}
+        onMouseEnter={({ currentTarget }) => {
+          if (collapse) {
+            setDropdown(currentTarget);
+            setDropdownEl(currentTarget);
+            setDropdownName(name);
+          }
+        }}
+        onMouseLeave={() => collapse && setDropdown(null)}
+        light={light}
+      />
+    )
+  );
 
   // Render the routes on the dropdown menu
-  const renderRoutes = routes.map(({ name, collapse, columns, rowsPerColumn }) => {
-    let template;
+  const renderRoutes = routes.map(
+    ({ name, collapse, columns, rowsPerColumn }) => {
+      let template;
 
-    // Render the dropdown menu that should be display as columns
-    if (collapse && columns && name === dropdownName) {
-      const calculateColumns = collapse.reduce((resultArray, item, index) => {
-        const chunkIndex = Math.floor(index / rowsPerColumn);
+      // Render the dropdown menu that should be display as columns
+      if (collapse && columns && name === dropdownName) {
+        const calculateColumns = collapse.reduce((resultArray, item, index) => {
+          const chunkIndex = Math.floor(index / rowsPerColumn);
 
-        if (!resultArray[chunkIndex]) {
-          resultArray[chunkIndex] = [];
-        }
+          if (!resultArray[chunkIndex]) {
+            resultArray[chunkIndex] = [];
+          }
 
-        resultArray[chunkIndex].push(item);
+          resultArray[chunkIndex].push(item);
 
-        return resultArray;
-      }, []);
+          return resultArray;
+        }, []);
 
-      template = (
-        <Grid key={name} container spacing={3} py={1} px={1.5}>
-          {calculateColumns.map((cols, key) => {
-            const gridKey = `grid-${key}`;
-            const dividerKey = `divider-${key}`;
+        template = (
+          <Grid key={name} container spacing={3} py={1} px={1.5}>
+            {calculateColumns.map((cols, key) => {
+              const gridKey = `grid-${key}`;
+              const dividerKey = `divider-${key}`;
 
-            return (
-              <Grid key={gridKey} item xs={12 / columns} sx={{ position: "relative" }}>
-                {cols.map((col, index) => (
-                  <Fragment key={col.name}>
-                    <MDBox
-                      width="100%"
-                      display="flex"
-                      alignItems="center"
-                      py={1}
-                      mt={index !== 0 ? 2 : 0}
-                    >
+              return (
+                <Grid
+                  key={gridKey}
+                  item
+                  xs={12 / columns}
+                  sx={{ position: "relative" }}
+                >
+                  {cols.map((col, index) => (
+                    <Fragment key={col.name}>
                       <MDBox
+                        width="100%"
                         display="flex"
-                        justifyContent="center"
                         alignItems="center"
-                        width="1.5rem"
-                        height="1.5rem"
-                        borderRadius="md"
-                        color="text"
-                        mr={1}
-                        fontSize="1rem"
-                        lineHeight={1}
+                        py={1}
+                        mt={index !== 0 ? 2 : 0}
                       >
-                        {col.icon}
+                        <MDBox
+                          display="flex"
+                          justifyContent="center"
+                          alignItems="center"
+                          width="1.5rem"
+                          height="1.5rem"
+                          borderRadius="md"
+                          color="text"
+                          mr={1}
+                          fontSize="1rem"
+                          lineHeight={1}
+                        >
+                          {col.icon}
+                        </MDBox>
+                        <MDTypography
+                          display="block"
+                          variant="button"
+                          fontWeight="bold"
+                          textTransform="capitalize"
+                        >
+                          {col.name}
+                        </MDTypography>
                       </MDBox>
-                      <MDTypography
-                        display="block"
-                        variant="button"
-                        fontWeight="bold"
-                        textTransform="capitalize"
-                      >
-                        {col.name}
-                      </MDTypography>
-                    </MDBox>
-                    {col.collapse.map((item) => (
-                      <MDTypography
-                        key={item.name}
-                        component={item.route ? Link : MuiLink}
-                        to={item.route ? item.route : ""}
-                        href={item.href ? item.href : (e) => e.preventDefault()}
-                        target={item.href ? "_blank" : ""}
-                        rel={item.href ? "noreferrer" : "noreferrer"}
-                        minWidth="11.25rem"
-                        display="block"
-                        variant="button"
-                        color="text"
-                        textTransform="capitalize"
-                        fontWeight="regular"
-                        py={0.625}
-                        px={2}
-                        sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-                          borderRadius: borderRadius.md,
-                          cursor: "pointer",
-                          transition: "all 300ms linear",
+                      {col.collapse.map((item) => (
+                        <MDTypography
+                          key={item.name}
+                          component={item.route ? Link : MuiLink}
+                          to={item.route ? item.route : ""}
+                          href={
+                            item.href ? item.href : (e) => e.preventDefault()
+                          }
+                          target={item.href ? "_blank" : ""}
+                          rel={item.href ? "noreferrer" : "noreferrer"}
+                          minWidth="11.25rem"
+                          display="block"
+                          variant="button"
+                          color="text"
+                          textTransform="capitalize"
+                          fontWeight="regular"
+                          py={0.625}
+                          px={2}
+                          sx={({
+                            palette: { grey, dark },
+                            borders: { borderRadius },
+                          }) => ({
+                            borderRadius: borderRadius.md,
+                            cursor: "pointer",
+                            transition: "all 300ms linear",
 
-                          "&:hover": {
-                            backgroundColor: grey[200],
-                            color: dark.main,
-                          },
-                        })}
-                      >
-                        {item.name}
-                      </MDTypography>
-                    ))}
-                  </Fragment>
-                ))}
-                {key !== 0 && (
-                  <Divider
-                    key={dividerKey}
-                    orientation="vertical"
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "-4px",
-                      transform: "translateY(-45%)",
-                      height: "90%",
-                    }}
-                  />
-                )}
-              </Grid>
-            );
-          })}
-        </Grid>
-      );
-
-      // Render the dropdown menu that should be display as list items
-    } else if (collapse && name === dropdownName) {
-      template = collapse.map((item) => {
-        const linkComponent = {
-          component: MuiLink,
-          href: item.href,
-          target: "_blank",
-          rel: "noreferrer",
-        };
-
-        const routeComponent = {
-          component: Link,
-          to: item.route,
-        };
-
-        return (
-          <MDTypography
-            key={item.name}
-            {...(item.route ? routeComponent : linkComponent)}
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            variant="button"
-            textTransform="capitalize"
-            minWidth={item.description ? "14rem" : "12rem"}
-            color={item.description ? "dark" : "text"}
-            fontWeight={item.description ? "bold" : "regular"}
-            py={item.description ? 1 : 0.625}
-            px={2}
-            sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-              borderRadius: borderRadius.md,
-              cursor: "pointer",
-              transition: "all 300ms linear",
-
-              "&:hover": {
-                backgroundColor: grey[200],
-                color: dark.main,
-
-                "& *": {
-                  color: dark.main,
-                },
-              },
+                            "&:hover": {
+                              backgroundColor: grey[200],
+                              color: dark.main,
+                            },
+                          })}
+                        >
+                          {item.name}
+                        </MDTypography>
+                      ))}
+                    </Fragment>
+                  ))}
+                  {key !== 0 && (
+                    <Divider
+                      key={dividerKey}
+                      orientation="vertical"
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "-4px",
+                        transform: "translateY(-45%)",
+                        height: "90%",
+                      }}
+                    />
+                  )}
+                </Grid>
+              );
             })}
-            onMouseEnter={({ currentTarget }) => {
-              if (item.dropdown) {
-                setNestedDropdown(currentTarget);
-                setNestedDropdownEl(currentTarget);
-                setNestedDropdownName(item.name);
-              }
-            }}
-            onMouseLeave={() => {
-              if (item.dropdown) {
-                setNestedDropdown(null);
-              }
-            }}
-          >
-            {item.description ? (
-              <MDBox display="flex" py={0.25} fontSize="1rem" color="text">
-                {typeof item.icon === "string" ? (
-                  <Icon color="inherit">{item.icon}</Icon>
-                ) : (
-                  <MDBox color="inherit">{item.icon}</MDBox>
-                )}
-                <MDBox pl={1} lineHeight={0}>
-                  <MDTypography
-                    variant="button"
-                    display="block"
-                    fontWeight="bold"
-                    textTransform="capitalize"
-                  >
-                    {item.name}
-                  </MDTypography>
-                  <MDTypography variant="button" fontWeight="regular" color="text">
-                    {item.description}
-                  </MDTypography>
-                </MDBox>
-              </MDBox>
-            ) : (
-              <MDBox display="flex" alignItems="center" color="text">
-                <Icon sx={{ mr: 1 }}>{item.icon}</Icon>
-                {item.name}
-              </MDBox>
-            )}
-            {item.collapse && (
-              <Icon sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}>
-                keyboard_arrow_right
-              </Icon>
-            )}
-          </MDTypography>
+          </Grid>
         );
-      });
-    }
 
-    return template;
-  });
+        // Render the dropdown menu that should be display as list items
+      } else if (collapse && name === dropdownName) {
+        template = collapse.map((item) => {
+          const linkComponent = {
+            component: MuiLink,
+            href: item.href,
+            target: "_blank",
+            rel: "noreferrer",
+          };
+
+          const routeComponent = {
+            component: Link,
+            to: item.route,
+          };
+
+          return (
+            <MDTypography
+              key={item.name}
+              {...(item.route ? routeComponent : linkComponent)}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              variant="button"
+              textTransform="capitalize"
+              minWidth={item.description ? "14rem" : "12rem"}
+              color={item.description ? "dark" : "text"}
+              fontWeight={item.description ? "bold" : "regular"}
+              py={item.description ? 1 : 0.625}
+              px={2}
+              sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                borderRadius: borderRadius.md,
+                cursor: "pointer",
+                transition: "all 300ms linear",
+
+                "&:hover": {
+                  backgroundColor: grey[200],
+                  color: dark.main,
+
+                  "& *": {
+                    color: dark.main,
+                  },
+                },
+              })}
+              onMouseEnter={({ currentTarget }) => {
+                if (item.dropdown) {
+                  setNestedDropdown(currentTarget);
+                  setNestedDropdownEl(currentTarget);
+                  setNestedDropdownName(item.name);
+                }
+              }}
+              onMouseLeave={() => {
+                if (item.dropdown) {
+                  setNestedDropdown(null);
+                }
+              }}
+            >
+              {item.description ? (
+                <MDBox display="flex" py={0.25} fontSize="1rem" color="text">
+                  {typeof item.icon === "string" ? (
+                    <Icon color="inherit">{item.icon}</Icon>
+                  ) : (
+                    <MDBox color="inherit">{item.icon}</MDBox>
+                  )}
+                  <MDBox pl={1} lineHeight={0}>
+                    <MDTypography
+                      variant="button"
+                      display="block"
+                      fontWeight="bold"
+                      textTransform="capitalize"
+                    >
+                      {item.name}
+                    </MDTypography>
+                    <MDTypography
+                      variant="button"
+                      fontWeight="regular"
+                      color="text"
+                    >
+                      {item.description}
+                    </MDTypography>
+                  </MDBox>
+                </MDBox>
+              ) : (
+                <MDBox display="flex" alignItems="center" color="text">
+                  <Icon sx={{ mr: 1 }}>{item.icon}</Icon>
+                  {item.name}
+                </MDBox>
+              )}
+              {item.collapse && (
+                <Icon
+                  sx={{
+                    fontWeight: "normal",
+                    verticalAlign: "middle",
+                    mr: -0.5,
+                  }}
+                >
+                  keyboard_arrow_right
+                </Icon>
+              )}
+            </MDTypography>
+          );
+        });
+      }
+
+      return template;
+    }
+  );
 
   // Routes dropdown menu
   const dropdownMenu = (
@@ -400,7 +424,10 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
                     fontWeight={item.description ? "bold" : "regular"}
                     py={item.description ? 1 : 0.625}
                     px={2}
-                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                    sx={({
+                      palette: { grey, dark },
+                      borders: { borderRadius },
+                    }) => ({
                       borderRadius: borderRadius.md,
                       cursor: "pointer",
                       transition: "all 300ms linear",
@@ -434,7 +461,11 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
                     {item.collapse && (
                       <Icon
                         fontSize="small"
-                        sx={{ fontWeight: "normal", verticalAlign: "middle", mr: -0.5 }}
+                        sx={{
+                          fontWeight: "normal",
+                          verticalAlign: "middle",
+                          mr: -0.5,
+                        }}
                       >
                         keyboard_arrow_right
                       </Icon>
@@ -509,7 +540,11 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
           backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
         })}
       >
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
+        <MDBox
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
           <MDBox
             component={Link}
             to="/"
@@ -517,21 +552,40 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
             lineHeight={1}
             pl={{ xs: 0, lg: 1 }}
           >
-            <MDTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+            <MDTypography
+              variant="button"
+              fontWeight="bold"
+              color={light ? "white" : "dark"}
+            >
               {brand}
             </MDTypography>
           </MDBox>
-          <MDBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
+          <MDBox
+            color="inherit"
+            display={{ xs: "none", lg: "flex" }}
+            m={0}
+            p={0}
+          >
             {authContext.isAuthenticated && renderNavbarItems}
             {!authContext.isAuthenticated && (
-              <MDBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
+              <MDBox
+                color="inherit"
+                display={{ xs: "none", lg: "flex" }}
+                m={0}
+                p={0}
+              >
                 <DefaultNavbarLink
                   icon="account_circle"
                   name="register"
                   route="/auth/register"
                   light={light}
                 />
-                <DefaultNavbarLink icon="key" name="login" route="/auth/login" light={light} />
+                <DefaultNavbarLink
+                  icon="key"
+                  name="login"
+                  route="/auth/login"
+                  light={light}
+                />
               </MDBox>
             )}
           </MDBox>
@@ -582,7 +636,9 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
           borderRadius="md"
           px={transparent ? 2 : 0}
         >
-          {mobileView && <DefaultNavbarMobile routes={routes} open={mobileNavbar} />}
+          {mobileView && (
+            <DefaultNavbarMobile routes={routes} open={mobileNavbar} />
+          )}
         </MDBox>
       </MDBox>
       {dropdownMenu}
@@ -593,7 +649,7 @@ function DefaultNavbar({ routes, brand, transparent, light, action }) {
 
 // Declaring default props for DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Material Dashboard PRO",
+  brand: "QUSkillbridge",
   transparent: false,
   light: false,
   action: false,

@@ -23,7 +23,7 @@ import MDButton from "components/MDButton";
 
 function DeleteAccount() {
   return (
-    <Card id="delete-account">
+    <Card id="coursehome">
       <MDBox
         pr={3}
         display="flex"
@@ -31,12 +31,24 @@ function DeleteAccount() {
         alignItems={{ xs: "flex-start", sm: "center" }}
         flexDirection={{ xs: "column", sm: "row" }}
       >
-        <MDBox p={3} lineHeight={1}>
-          <MDBox mb={1}>
-            <MDTypography variant="h5">Delete Account</MDTypography>
+        <MDBox p={6} lineHeight={1}>
+          <MDBox mb={3}>
+            <MDTypography variant="h5">Course Title</MDTypography>
           </MDBox>
+          <MDTypography variant="h6" color="text">
+            Introduction
+          </MDTypography>
           <MDTypography variant="button" color="text">
-            Once you delete your account, there is no going back. Please be certain.
+            Course Introduction text (The spectrum of effective attacks against
+            ML is wide, rapidly evolving, and covers all phases of the ML life
+            cycle - from design and implementation to training, testing, and
+            finally, to deployment in the real world. This demo is intended to
+            be a step toward developing a taxonomy and terminology of
+            adversarial machine learning (AML), which in turn may aid in
+            securing applications of artificial intelligence (AI) against
+            adversarial manipulations of AI systems. We adopt the notions of
+            security, resilience, and robustness of ML systems from the NIST AI
+            Risk Management Framework).
           </MDTypography>
         </MDBox>
         <MDBox display="flex" flexDirection={{ xs: "column", sm: "row" }}>

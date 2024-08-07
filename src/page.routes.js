@@ -71,9 +71,6 @@ const pageRoutes = [
             name: "pricing page",
             route: "/pages/pricing-page",
           },
-          { name: "RTL", route: "/pages/rtl" },
-          { name: "widgets", route: "/pages/widgets" },
-          { name: "charts", route: "/pages/charts" },
           {
             name: "notfications",
             route: "/pages/notifications",
@@ -171,7 +168,7 @@ const pageRoutes = [
     ],
   },
   {
-    name: "Examples (API)",
+    name: "Examples",
     // type: "react-nodejs",
     collapse: [
       {

@@ -16,41 +16,51 @@ Coded by www.creative-tim.com
 // @material-ui core components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-//import Autocomplete from "@mui/material/Autocomplete";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
+import MDButton from "components/MDButton";
 import MDTypography from "components/MDTypography";
 
 // Settings page components
-//import FormField from "layouts/pages/account/components/FormField";
 import CrudService from "services/cruds-service";
 
-// Data
-import CourseInfoData from "layouts/pages/account/Course Content/components/CourseHome/data/CourseInfoData";
-
-function CourseHome() {
+function CourseVideos() {
   return (
-    <Card id="basic-info" sx={{ overflow: "visible" }}>
-      <MDBox p={3}>
-        <MDTypography variant="h5">Introduction</MDTypography>
-      </MDBox>
-      
-      <MDBox mb={1}>
-          <MDTypography variant="body2" color="text">
-            Please follow this guide for learning more about the course.
-          </MDTypography>
-          <MDTypography variant="button" color="text">
-            Course introduction scbagdaud
-          </MDTypography>
-        </MDBox>
-        <MDBox ml="auto">
+    <Card id="videos" sx={{ overflow: "visible" }}>
+      {
+        <MDBox
+          pr={3}
+          display="flex"
+          justifyContent="space-between"
+          alignItems={{ xs: "flex-start", sm: "center" }}
+          flexDirection={{ xs: "column", sm: "row" }}
+        >
+          <MDBox p={6} lineHeight={1}>
+            <MDBox mb={3}>
+              <MDTypography variant="h5">Course Videos</MDTypography>
+            </MDBox>
+            <MDTypography variant="h6" color="text">
+              Module Number
+            </MDTypography>
+
+            <MDBox mb={3}></MDBox>
+          </MDBox>
+
+          <MDBox
+            display="flex"
+            justifyContent=""
+            alignItems="flex-end"
+            flexWrap="wrap"
+          >
             <MDButton variant="gradient" color="dark" size="small">
               Continue
             </MDButton>
           </MDBox>
+        </MDBox>
+      }
     </Card>
   );
 }
 
-export default CourseHome;
+export default CourseVideos;

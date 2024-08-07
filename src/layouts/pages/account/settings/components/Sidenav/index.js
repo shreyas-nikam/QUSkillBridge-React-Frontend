@@ -29,14 +29,12 @@ function Sidenav() {
   const { darkMode } = controller;
 
   const sidenavItems = [
-    { icon: "person", label: "profile", href: "profile" },
-    { icon: "receipt_long", label: "basic info", href: "basic-info" },
-    { icon: "lock", label: "change password", href: "change-password" },
-    { icon: "security", label: "2FA", href: "2fa" },
-    { icon: "badge", label: "accounts", href: "accounts" },
-    { icon: "campaign", label: "notifications", href: "notifications" },
-    { icon: "settings_applications", label: "sessions", href: "sessions" },
-    { icon: "delete", label: "delete account", href: "delete-account" },
+    { icon: "home", label: "course home", href: "course-home" },
+    { icon: "slideshow", label: "course slides", href: "course-slide" },
+    { icon: "theaters", label: "course videos", href: "course-videos" },
+    { icon: "assistant", label: "QuPilot", href: "qupilot" },
+    { icon: "quiz", label: "assessment", href: "assessment" },
+    { icon: "folder", label: "reference pdf", href: "reference-pdf" },
   ];
 
   const renderSidenavItems = sidenavItems.map(({ icon, label, href }, key) => {
