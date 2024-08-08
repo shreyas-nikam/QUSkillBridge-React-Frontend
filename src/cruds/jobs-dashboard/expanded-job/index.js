@@ -100,11 +100,7 @@ function ExpandedJob() {
   }, []);
 
   const exploreClickHandler = async () => {
-    const result = confirm(
-      "Would you like to unlock this job?",
-      "Yes",
-      "No"
-    );
+    const result = confirm("Would you like to unlock this job?", "Yes", "No");
     if (result) {
       const response = await CrudService.addJobToVisitedJobs({
         job_id: job_id,
@@ -143,9 +139,7 @@ function ExpandedJob() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDBox pr={1}
-        
-        >
+      <MDBox pr={1}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8} lg={8}>
             <MDBox
@@ -176,15 +170,15 @@ function ExpandedJob() {
                   ) : null}
                 </Grid>
                 <Grid item xs={12} md={8} lg={8}>
-                  <MDTypography variant="h5"  mt={1}>
+                  <MDTypography variant="h5" mt={1}>
                     {job.title ? job.title : ""}
                   </MDTypography>
                   <MDTypography variant="h6" mt={1}>
                     {job.company ? job.company : ""}
                   </MDTypography>
                 </Grid>
-                
-                <Grid item xs={12} md={2} lg={2}> 
+
+                <Grid item xs={12} md={2} lg={2}>
                   {job.job_url !== null && job.job_url != "" ? (
                     <MDButton
                       variant="outlined"
@@ -203,16 +197,13 @@ function ExpandedJob() {
               </MDTypography>
               {job.description}
             </MDBox>
-           
           </Grid>
-          
-         
+
           <Grid item xs={12} md={4} lg={4}>
-            
             {/* Job Location */}
             {job.location !== null && job.location != "" ? (
               <MDBox
-              mb = {3}
+                mb={3}
                 key="location_block"
                 display="block"
                 bgColor={darkMode ? "transparent" : "white"}
@@ -572,7 +563,6 @@ function ExpandedJob() {
             ) : null}
           </Grid>
         </Grid>
-        
 
         <MDBox
           key="job_unlock_block"
@@ -589,20 +579,18 @@ function ExpandedJob() {
               darkMode ? `${borderWidth[1]} solid ${white.main}` : 0,
             fontSize: ({ typography: { size } }) => size.md,
           }} */
-            display="block" 
-            bgColor={darkMode ? "transparent" : "transparent"}
+          display="block"
+          bgColor={darkMode ? "transparent" : "transparent"}
           color="text"
           borderRadius="sm"
           mt={1}
           py={2}
-          px = {2}
+          px={2}
           lineHeight={3}
-            
         >
-        
-            <MDTypography variant="h6" mt={1}>
+          <MDTypography variant="h6" mt={1}>
             Do you want QUSkillBridge to help you prepare for this job?
-            </MDTypography>
+          </MDTypography>
           <MDButton
             variant="contained"
             color="info"
