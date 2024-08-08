@@ -14,7 +14,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context";
 
 import Grid from "@mui/material/Grid";
@@ -46,10 +46,131 @@ import booking1 from "assets/images/products/product-1-min.jpg";
 import booking2 from "assets/images/products/product-2-min.jpg";
 import booking3 from "assets/images/products/product-3-min.jpg";
 
+
+import CrudService from "services/cruds-service";
+
+
 function Analytics() {
   const { sales, tasks } = reportsLineChartData;
 
   const { setIsAuthenticated, getCurrentUser } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+
+
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    async function checkToken() {
+      let user_id = await getCurrentUser();
+      if (!user_id) {
+        setIsAuthenticated(false);
+        localStorage.removeItem("token");
+      }
+    }
+    checkToken();
+  }, []);
+
+
+  // // function to get the jobs data for the particular user
+  // useEffect(() => {
+  //   async function checkToken() {
+  //     let user_id = await getCurrentUser();
+  //     if (!user_id) {
+  //       setIsAuthenticated(false);
+  //       localStorage.removeItem("token");
+  //     }
+  //     else {
+  //       setUser(user_id);
+  //       return user_id;
+  //     }
+  //   }
+  //   async function fetchJobsData(userId) {
+  //     let response = await CrudService.getJobsByPersona(userId);
+  //     console.log("response data", response);
+  //     setJobs(response);
+  //   }
+  //   checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
+  // }, []);
+
+
+  // // function to get a particular course
+  // useEffect(() => {
+  //   async function fetchCourseData() {
+  //     let response = await CrudService.getCourse("66a91f79a760e1475cb110a4");
+  //     console.log("response data for course", response);
+  //   }
+  //   fetchCourseData();
+  // }, []);
+
+
+  // function to get a particular job
+  // useEffect(() => {
+  //   async function fetchJobData() {
+  //     let response = await CrudService.getJobDataById("66a91f79a760e1475cb110b6");
+  //     console.log("response data for job", response);
+  //   }
+  //   fetchJobData();
+  // }, []);
+
+  // function to get skill match score
+  // useEffect(() => {
+  //   async function fetchSkillMatchScore() {
+  //     let response = await CrudService.generateSkillMatchScore({
+  //       "job_id": "66a91f79a760e1475cb110b8",
+  //       "profile_id": "66aa9eafd221d572880a58a1"
+  //     });
+  //     console.log("response data for skill match score", response);
+  //   }
+  //   fetchSkillMatchScore();
+  // }, []);
+
+  // function to get the course outline
+  // useEffect(() => {
+  //   // this function should be called when the skill match score is generated.
+  //   // the job_id should be the one from the job that the user has already visited.
+  //   async function fetchCourseOutline() {
+  //     let response = await CrudService.generateCourseOutline({
+  //       "job_id": "66b0dd0c5a072fd2ce4d045a",
+  //       "profile_id": "66aa9eafd221d572880a58a1"
+  //     });
+  //     console.log("response data for course outline", response);
+  //   }
+  //   fetchCourseOutline();
+  // }, []);
+
+  // function to get the cover letter
+  // useEffect(() => {
+  //   // this function should be called when the skill match score is generated.
+  //   // the job_id should be the one from the job that the user has already visited.
+  //   async function fetchCoverLetter() {
+  //     let response = await CrudService.generateCoverLetter({
+  //       "job_id": "66b0dd0c5a072fd2ce4d045a",
+  //       "profile_id": "66aa9eafd221d572880a58a1"
+  //     });
+  //     console.log("response data for cover letter", response);
+  //   }
+  //   fetchCoverLetter();
+  // }, []);
+
+  // function to get the available courses
+  // useEffect(() => {
+  //   async function fetchAvailableCourses() {
+  //     let response = await CrudService.getAvailableCourses("66aa9eafd221d572880a58a1"); // user_id
+  //     console.log("response data for available courses", response);
+  //   }
+  //   fetchAvailableCourses();
+  // }, []);
+
+  // function to get the visited jobs
+  // useEffect(() => {
+  //   async function fetchVisitedJobs() {
+  //     let response = await CrudService.getVisitedJobs("66aa9eafd221d572880a58a1"); // user_id
+  //     console.log("response data for visited jobs", response);
+  //   }
+  //   fetchVisitedJobs();
+  // }, []);
+
+
 
   // useEffect(() => {
   //   async function checkToken() {

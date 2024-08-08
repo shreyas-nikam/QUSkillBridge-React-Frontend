@@ -28,6 +28,8 @@ import NewPersona from "cruds/persona-management/new-persona";
 import CourseHome from "layouts/pages/course-content/components/CourseHome";
 import CourseContent from "layouts/pages/course-content";
 
+import ExpandedJob from "cruds/jobs-dashboard/expanded-job";
+import VisitedJob from "cruds/jobs-dashboard/visited-job";
 /** 
   All of the routes for the Material Dashboard 2 PRO React are added here,
   You can add a new route, customize the routes and delete the routes here.
@@ -53,13 +55,6 @@ import CourseContent from "layouts/pages/course-content";
 // Material Dashboard 2 PRO React layouts
 
 const crudRoutes = [
-  
-  {
-    key: "course-content",
-    route: "/course-content",
-    component: <CourseContent />,
-    type: "title",
-  },
   {
     key: "new-category",
     route: "/category-management/new-category",
@@ -132,6 +127,19 @@ const crudRoutes = [
     component: <EditPersona />,
     type: "personas",
   },
+  {
+    key: "expanded-job",
+    route: "/jobs-dashboard/expanded-job/:job_id",
+    component: <ExpandedJob />,
+    type: "jobs",
+  },
+  {
+    key: "visited-job",
+    route: "/jobs-dashboard/visited-job/:job_id",
+    component: <VisitedJob />,
+    type: "jobs",
+  }
+
 ];
 
 export default crudRoutes;

@@ -1,4 +1,7 @@
 import HttpService from "./http.service";
+import axios from "axios";
+
+const fastapiUrl = "http://localhost:8000";
 
 class CrudService {
   // users requests
@@ -182,6 +185,74 @@ class CrudService {
     return await HttpService.patch(endpoint, payload);
   };
 
+  // jobs requests
+  getJobsByPersona = async (id) => {
+    const endpoint = `jobs/personaJobs/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getJobDataById = async (id) => {
+    const endpoint = `jobs/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getVisitedJobs = async (id) => {
+    const endpoint = `jobs/visitedJobs/${id}`;
+    console.log("Id passed", id);
+    return await HttpService.get(endpoint);
+  }
+
+  addJobToVisitedJobs = async (payload) => {
+    const endpoint = `jobs/addJobToVisitedJobs/`;
+    const response = await HttpService.post(endpoint, payload);
+    return response;
+  }
+
+  getVisitedJobById = async (id) => {
+    const endpoint = `jobs/visitedJob/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  // courses requests
+  getCourses = async () => {
+    const endpoint = `courses`;
+    return await HttpService.get(endpoint);
+  }
+
+  getCourse = async (id) => {
+    const endpoint = `courses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getAvailableCourses = async (id) => {
+    const endpoint = `courses/availableCourses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  // update profile
+  updateProfile = async (payload) => {
+    const endpoint = `${fastapiUrl}/get_profile_suggestions/`;
+    response = await axios.post(endpoint, payload);
+    return response.data;
+  }
+
+  generateCourseOutline = async (payload) => {
+    const endpoint = `${fastapiUrl}/generate_course_outline/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
+  }
+
+  generateCoverLetter = async (payload) => {
+    const endpoint = `${fastapiUrl}/generate_cover_letter/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
+  }
+
+  generateSkillMatchScore = async (payload) => {
+    const endpoint = `${fastapiUrl}/generate_skill_match_score/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
+  }
 
 
 }
