@@ -192,7 +192,7 @@ function VisitedJob() {
                 <Grid container spacing={3}>
 
                     {/* Grid for the job description */}
-                    <Grid item md={8} lg={8}>
+                    <Grid item xs={12} md={8} lg={6}>
                         <MDBox
                             key="job_description_block"
                             display="block"
@@ -209,19 +209,19 @@ function VisitedJob() {
                                 fontSize: ({ typography: { size } }) => size.md,
                             }}
                         >
-                            <Grid container spacing={3}>
+                            <Grid container>
                                 <Grid item xs={12} md={2} lg={2}>
                                     {
                                         job.job && job.job.logo_photo_url !== null && job.job.logo_photo_url != "" ? (
-                                            <MDAvatar src={job.job.logo_photo_url} alt="profile-image" size="xl" shadow="sm" />
+                                            <MDAvatar src={job.job.logo_photo_url} alt="profile-image" size="xl" />
                                         ) : null
                                     }
                                 </Grid>
                                 <Grid item xs={12} md={8} lg={8}>
-                                    <MDTypography variant="h3" fontWeight="medium" mt={1}>
+                                    <MDTypography variant="h5" mt={1}>
                                         {job.job && job.job.title ? job.job.title : ""}
                                     </MDTypography>
-                                    <MDTypography variant="h5" fontWeight="medium" mt={1}>
+                                    <MDTypography variant="h6" mt={1}>
                                         {job.job && job.job.company ? job.job.company : ""}
                                     </MDTypography>
 
@@ -236,7 +236,7 @@ function VisitedJob() {
 
                         </MDBox>
                     </Grid>
-                    <Grid item md={4} lg={4} container>
+                    <Grid item md={4} lg={6} container>
                         {/* Grid for the skill match score */}
                         <Grid item>
                             <MDBox
@@ -341,8 +341,11 @@ function VisitedJob() {
                         </Grid>
 
 
-                        {/* Grid for the cover letter */}
-                        <Grid item>
+
+
+                    </Grid>
+                    {/* Grid for the cover letter */}
+                    <Grid item >
                             <MDBox
                                 key="cover_letter_block"
                                 display="block"
@@ -390,9 +393,8 @@ function VisitedJob() {
                                 )}
                             </MDBox>
                         </Grid>
+                    
 
-
-                    </Grid>
                     {/* Grid for the course outline */}
                     <Grid item>
                         <MDBox

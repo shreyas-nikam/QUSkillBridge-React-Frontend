@@ -34,7 +34,7 @@ import { useNavigate } from "react-router-dom";
 function CourseCard({ image, title, description, label, action }) {
   const navigate = useNavigate();
   const clickExploreHandler = () => {
-    navigate("src/pages/account/Course Content/components/CourseHome");
+    navigate("/course-content");
 };
   return (
     <Card
