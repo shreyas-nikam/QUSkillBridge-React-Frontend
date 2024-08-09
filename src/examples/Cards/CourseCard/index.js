@@ -30,12 +30,9 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/MDButton";
 import { useNavigate } from "react-router-dom";
 
-
-function CourseCard({ image, title, description, label, action }) {
+function CourseCard({ image, title, description, label, action, exploreCard }) {
   const navigate = useNavigate();
-  const clickExploreHandler = () => {
-    navigate("/course-content");
-};
+
   return (
     <Card
       sx={{
@@ -80,7 +77,12 @@ function CourseCard({ image, title, description, label, action }) {
         />
       </MDBox>
       <MDBox textAlign="center" pt={5} px={3}>
-        <MDBox display="flex" justifyContent="center" alignItems="center" mt={action ? -8 : -4.25}>
+        <MDBox
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          mt={action ? -8 : -4.25}
+        >
           {action}
         </MDBox>
         <MDTypography variant="h5" fontWeight="regular" sx={{ mt: 4 }}>
@@ -100,45 +102,22 @@ function CourseCard({ image, title, description, label, action }) {
         px={3}
         lineHeight={1}
       >
-        
-        
-        <MDBox mt={2} mb={1} display="flex"
-        justifyContent="space-between" alignItems="center">
-              <MDButton variant="outlined" color="info" fullWidth onClick={clickExploreHandler}>
-                Explore Course
-              </MDButton>
-            </MDBox>
-        
-        
-        <MDBox display="flex" justifyContent="space-between" alignItems="center">
-          {action.type === "internal" ? (
-            <MDButton
-              component={Link}
-              to={action.route}
-              variant="outlined"
-              size="small"
-              color={action.color}
-              fullWidth
-            >
-              {action.label}
-            </MDButton>
-          ) : (
-            <MDButton
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
-              variant="outlined"
-              size="small"
-              color={action.color}
-              fullWidth
-            >
-              {action.label}
-            </MDButton>
-          )}
-          
+        <MDBox
+          mt={2}
+          mb={1}
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <MDButton
+            variant="outlined"
+            color="info"
+            fullWidth
+            onClick={exploreCard}
+          >
+            Explore Course
+          </MDButton>
         </MDBox>
-      
       </MDBox>
     </Card>
   );

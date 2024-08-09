@@ -138,8 +138,13 @@ const crudRoutes = [
     route: "/jobs-dashboard/visited-job/:job_id",
     component: <VisitedJob />,
     type: "jobs",
-  }
-
+  },
+  {
+    key: "course-content",
+    route: "/course-content/:course_id",
+    component: <CourseContent />,
+    type: "course-content",
+  },
 ];
 
 export default crudRoutes;

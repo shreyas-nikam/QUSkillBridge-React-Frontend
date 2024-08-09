@@ -345,7 +345,7 @@ function VisitedJob() {
                         </MDBox>
                         <MDButton
                           variant="contained"
-                          color="secondary"
+                          color="info"
                           onClick={generateSkillMatchScore}
                         >
                           Generate Skill Match Score
@@ -400,7 +400,7 @@ function VisitedJob() {
 
                       <MDButton
                         variant="contained"
-                        color="secondary"
+                        color="info"
                         onClick={generateCoverLetter}
                       >
                         Generate Cover Letter
@@ -459,7 +459,7 @@ function VisitedJob() {
                         <br />
                         <MDButton
                           variant="contained"
-                          color="secondary"
+                          color="info"
                           onClick={getCourseOutline}
                         >
                           Regenerate Course Outline
@@ -477,7 +477,7 @@ function VisitedJob() {
                       </MDBox>
                       <MDButton
                         variant="contained"
-                        color="secondary"
+                        color="info"
                         onClick={getCourseOutline}
                       >
                         Generate Course Outline

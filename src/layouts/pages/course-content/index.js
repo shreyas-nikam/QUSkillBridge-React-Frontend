@@ -36,8 +36,19 @@ function CourseContent() {
   const [activeStep, setActiveStep] = useState(0);
   const [content, setActiveContent] = useState(<CourseHome />);
 
+  // get the course id from the url
+  const location = useLocation();
+  const courseId = location.pathname.split("/").pop();
+  console.log(courseId);
+
   function getSteps() {
-    return ["Course Home", "Course Slides", "Course Videos", "QuCoPilot", "Assessment"];
+    return [
+      "Course Home",
+      "Course Slides",
+      "Course Videos",
+      "QuCoPilot",
+      "Assessment",
+    ];
   }
 
   function getStepContent(stepIndex) {
@@ -55,7 +66,7 @@ function CourseContent() {
         setActiveContent(<QuCoPilot />);
         break;
       case 4:
-        setActiveContent(<Assessment/>);
+        setActiveContent(<Assessment />);
         break;
     }
   }

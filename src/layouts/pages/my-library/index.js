@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -41,6 +42,7 @@ import CourseCard from "examples/Cards/CourseCard";
 
 import AuthService from "services/auth-service";
 import getId from "services/helper-service";
+import CrudService from "services/cruds-service";
 
 // Images
 
@@ -64,6 +66,8 @@ const actionButtons = <></>;
 
 function MyLibrary() {
   const [isDemo, setIsDemo] = useState(false);
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     id: "",
     name: "",
@@ -74,6 +78,12 @@ function MyLibrary() {
     confirmPassword: "",
     profile_image: "",
   });
+
+  const [availableCourses, setAvailableCourses] = useState([]);
+
+  const exploreCard = (course_id) => {
+    navigate("/course-content/" + course_id);
+  };
 
   useEffect(() => {
     (async () => {
@@ -95,6 +105,10 @@ function MyLibrary() {
         newPassword: "",
         confirmPassword: "",
       }));
+
+      const courses = await CrudService.getCourses();
+      setAvailableCourses(courses.data);
+      console.log("Courses", availableCourses);
     })();
   }, []);
 
@@ -161,39 +175,20 @@ function MyLibrary() {
 
       <MDBox mt={2}>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mt={3}>
-              <CourseCard
-                image={booking1}
-                title="AEDT Law Course"
-                description='The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Barcelona.'
-                label="Explore"
-                action={actionButtons}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mt={3}>
-              <CourseCard
-                image={booking2}
-                title="Office Studio"
-                description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the night life in London, UK.'
-                label="Explore"
-                action={actionButtons}
-              />
-            </MDBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <MDBox mt={3}>
-              <CourseCard
-                image={booking3}
-                title="Beautiful Castle"
-                description='The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio" where you can enjoy the main night life in Milan.'
-                label="Explore"
-                action={actionButtons}
-              />
-            </MDBox>
-          </Grid>
+          {availableCourses.map((course) => (
+            <Grid item xs={12} md={6} lg={4}>
+              <MDBox mt={3}>
+                <CourseCard
+                  image={booking1}
+                  title={course.attributes.app_name}
+                  description={course.attributes.short_description}
+                  label="Explore"
+                  action={actionButtons}
+                  exploreCard={() => exploreCard(course.id)}
+                />
+              </MDBox>
+            </Grid>
+          ))}
         </Grid>
       </MDBox>
       <Footer />
