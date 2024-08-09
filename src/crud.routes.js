@@ -25,6 +25,9 @@ import EditUser from "cruds/user-management/edit-user";
 import NewUser from "cruds/user-management/new-user";
 import EditPersona from "cruds/persona-management/edit-persona";
 import NewPersona from "cruds/persona-management/new-persona";
+import CourseHome from "layouts/pages/course-content/components/CourseHome";
+import CourseContent from "layouts/pages/course-content";
+
 import ExpandedJob from "cruds/jobs-dashboard/expanded-job";
 import VisitedJob from "cruds/jobs-dashboard/visited-job";
 /** 
@@ -135,8 +138,13 @@ const crudRoutes = [
     route: "/jobs-dashboard/visited-job/:job_id",
     component: <VisitedJob />,
     type: "jobs",
-  }
-
+  },
+  {
+    key: "course-content",
+    route: "/course-content/:course_id",
+    component: <CourseContent />,
+    type: "course-content",
+  },
 ];
 
 export default crudRoutes;

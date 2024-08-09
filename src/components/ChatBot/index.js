@@ -27,7 +27,7 @@ import {
 import CrudService from "services/cruds-service";
 
 
-function ChatBot() {
+function ChatBot({ courseId }) {
     const [controller, dispatch] = useMaterialUIController();
     const {
         openChatBot,
@@ -61,7 +61,6 @@ function ChatBot() {
         { "user_message": "", "bot_message": "Hello, how can I help you today?" },
     ]);
 
-    const course_id = "66a91f79a760e1475cb110a1";
 
     async function getChatbotResponse(payload) {
         const response = await CrudService.getChatbotResponse(payload);
@@ -75,7 +74,7 @@ function ChatBot() {
     const getResponse = async (message) => {
         setLoader(true);
         const payload = {
-            "course_id": course_id,
+            "course_id": courseId,
             // convert the chatbothistory to a string
             "chatbot_history": JSON.stringify(chatbotHistory),
             "query": message
@@ -126,7 +125,7 @@ function ChatBot() {
                             <Grid item xs={12} key={index}>
                                 <MDBox key={index} mb={2}>
                                     <MDTypography variant="body2" color="secondary" >
-                                        User: {chat.user_message }
+                                        User: {chat.user_message}
                                     </MDTypography>
                                     <MDTypography variant="body2" color="primary">AI: {chat.bot_message}</MDTypography>
                                 </MDBox>

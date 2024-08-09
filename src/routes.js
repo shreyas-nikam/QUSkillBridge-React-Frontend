@@ -39,7 +39,7 @@ Coded by www.creative-tim.com
 import Analytics from "layouts/dashboards/analytics";
 import Sales from "layouts/dashboards/sales";
 import ProfileOverview from "layouts/pages/profile/profile-overview";
-import AllProjects from "layouts/pages/profile/all-projects";
+import MyLibrary from "layouts/pages/my-library";
 import NewUser from "layouts/pages/users/new-user";
 import Settings from "layouts/pages/account/settings";
 import Billing from "layouts/pages/account/billing";
@@ -100,12 +100,12 @@ const routes = [
         route: "/pages/profile/profile-overview",
         component: <ProfileOverview />,
       },
-      {
-        name: "Settings",
-        key: "settings",
-        route: "/pages/account/settings",
-        component: <Settings />,
-      },
+      // {
+      //   name: "Settings",
+      //   key: "settings",
+      //   route: "/pages/account/settings",
+      //   component: <Settings />,
+      // },
       {
         name: "Logout",
         key: "logout",
@@ -115,97 +115,99 @@ const routes = [
   { type: "divider", key: "divider-0" },
   {
     type: "collapse",
-    name: "Dashboards",
-    key: "dashboards",
-    icon: <Icon fontSize="medium">dashboard</Icon>,
-    collapse: [
-      {
-        name: "Analytics",
-        key: "analytics",
-        route: "/dashboards/analytics",
-        component: <Analytics />,
-      },
-      {
-        name: "Sales",
-        key: "sales",
-        route: "/dashboards/sales",
-        component: <Sales />,
-      },
-    ],
-  },
-  { type: "title", title: "React + NodeJS", key: "crud-pages" },
-  {
-    type: "collapse",
-    name: "Examples (API)",
-    key: "react-nodejs",
-    icon: <FontAwesomeIcon icon={faNode} size="sm" />,
-    collapse: [
-      {
-        name: "User Profile",
-        key: "user-profile",
-        route: "/examples-api/user-profile",
-        component: <UserProfile />,
-      },
-      {
-        name: "User Management",
-        key: "user-management",
-        route: "/examples-api/user-management",
-        component: <UserManagement />,
-        type: "users",
-      },
-      {
-        name: "Jobs Dashboard",
-        key: "jobs-dashboard",
-        route: "/examples-api/jobs-dashboard",
-        component: <JobsDashboard />,
-        type: "jobs",
-      },
-      {
-        name: "Role Management",
-        key: "role-management",
-        route: "/examples-api/role-management",
-        component: <RoleManagement />,
-        type: "roles",
-      },
-      {
-        name: "Category Management",
-        key: "category-management",
-        route: "/examples-api/category-management",
-        component: <CategoryManagement />,
-        type: "categories",
-      },
-      {
-        name: "Tag Management",
-        key: "tag-management",
-        route: "/examples-api/tag-management",
-        component: <TagManagement />,
-        type: "tags",
-      },
-      {
-        name: "Item Management",
-        key: "item-management",
-        route: "/examples-api/item-management",
-        component: <ItemManagement />,
-        type: "items",
-      },
-      {
-        name: "Persona Management",
-        key: "persona-management",
-        route: "/examples-api/persona-management",
-        component: <PersonaManagement />,
-        type: "personas",
-      },
-    ],
+    name: "My Library",
+    key: "my-library",
+    route: "/pages/my-library",
+    icon: <Icon>book</Icon>,
+    component: <MyLibrary />,
+    noCollapse: true,
   },
   {
     type: "collapse",
     name: "QUSkillBridge",
-    key: "jobs-dashboard",
-    route: "examples-api/jobs-dashboard",
+    key: "quskillbridge",
+    route: "layouts/dashboards/jobs-dashboard",
+    icon: <Icon>assistant</Icon>,
     component: <JobsDashboard />,
-    icon: <Icon fontSize="medium">dashboard</Icon>,
     noCollapse: true,
   },
+  // {
+  //   type: "collapse",
+  //   name: "Dashboards",
+  //   key: "dashboards",
+  //   icon: <Icon fontSize="medium">dashboard</Icon>,
+  //   collapse: [
+  //     {
+  //       name: "Analytics",
+  //       key: "analytics",
+  //       route: "/dashboards/analytics",
+  //       component: <Analytics />,
+  //     },
+  //     {
+  //       name: "Sales",
+  //       key: "sales",
+  //       route: "/dashboards/sales",
+  //       component: <Sales />,
+  //     },
+  //   ],
+  // },
+  // { type: "title", title: "React + NodeJS", key: "crud-pages" },
+  // {
+  //   type: "collapse",
+  //   name: "Examples (API)",
+  //   key: "react-nodejs",
+  //   icon: <FontAwesomeIcon icon={faNode} size="sm" />,
+  //   collapse: [
+  //     {
+  //       name: "User Profile",
+  //       key: "user-profile",
+  //       route: "/examples-api/user-profile",
+  //       component: <UserProfile />,
+  //     },
+  //     {
+  //       name: "User Management",
+  //       key: "user-management",
+  //       route: "/examples-api/user-management",
+  //       component: <UserManagement />,
+  //       type: "users",
+  //     },
+  //     {
+  //       name: "Role Management",
+  //       key: "role-management",
+  //       route: "/examples-api/role-management",
+  //       component: <RoleManagement />,
+  //       type: "roles",
+  //     },
+  //     {
+  //       name: "Category Management",
+  //       key: "category-management",
+  //       route: "/examples-api/category-management",
+  //       component: <CategoryManagement />,
+  //       type: "categories",
+  //     },
+  //     {
+  //       name: "Tag Management",
+  //       key: "tag-management",
+  //       route: "/examples-api/tag-management",
+  //       component: <TagManagement />,
+  //       type: "tags",
+  //     },
+  //     {
+  //       name: "Item Management",
+  //       key: "item-management",
+  //       route: "/examples-api/item-management",
+  //       component: <ItemManagement />,
+  //       type: "items",
+  //     },
+  //     {
+  //       name: "Persona Management",
+  //       key: "persona-management",
+  //       route: "/examples-api/persona-management",
+  //       component: <PersonaManagement />,
+  //       type: "personas",
+  //     },
+  //   ],
+  // },
   // { type: "title", title: "Pages", key: "title-pages" },
   // {
   //   type: "collapse",
@@ -223,12 +225,7 @@ const routes = [
   //           route: "/pages/profile/profile-overview",
   //           component: <ProfileOverview />,
   //         },
-  //         {
-  //           name: "All Projects",
-  //           key: "all-projects",
-  //           route: "/pages/profile/all-projects",
-  //           component: <AllProjects />,
-  //         },
+  //
   //       ],
   //     },
   //     {
@@ -247,12 +244,12 @@ const routes = [
   //       name: "Account",
   //       key: "account",
   //       collapse: [
-  //         {
-  //           name: "Settings",
-  //           key: "settings",
-  //           route: "/pages/account/settings",
-  //           component: <Settings />,
-  //         },
+  //         // {
+  //         //   name: "Settings",
+  //         //   key: "settings",
+  //         //   route: "/pages/account/settings",
+  //         //   component: <Settings />,
+  //         // },
   //         {
   //           name: "Billing",
   //           key: "billing",
@@ -285,9 +282,9 @@ const routes = [
   //       route: "/pages/pricing-page",
   //       component: <PricingPage />,
   //     },
-  //     { name: "RTL", key: "rtl", route: "/pages/rtl", component: <RTL /> },
-  //     { name: "Widgets", key: "widgets", route: "/pages/widgets", component: <Widgets /> },
-  //     { name: "Charts", key: "charts", route: "/pages/charts", component: <Charts /> },
+  //     // { name: "RTL", key: "rtl", route: "/pages/rtl", component: <RTL /> },
+  //     // { name: "Widgets", key: "widgets", route: "/pages/widgets", component: <Widgets /> },
+  //     // { name: "Charts", key: "charts", route: "/pages/charts", component: <Charts /> },
   //     {
   //       name: "Notfications",
   //       key: "notifications",

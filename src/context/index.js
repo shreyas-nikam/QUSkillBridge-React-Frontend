@@ -18,7 +18,14 @@ Coded by www.creative-tim.com
   you can customize the states for the different components here.
 */
 
-import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -64,7 +71,7 @@ const AuthContextProvider = ({ children }) => {
   const login = (newToken) => {
     localStorage.setItem("token", newToken);
     setIsAuthenticated(true);
-    navigate("/dashboard/analytics");
+    navigate("/pages/profile/profile-overview");
   };
 
   const logout = () => {
@@ -108,7 +115,16 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, login, logout, getRole, getCurrentUser }}>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        login,
+        logout,
+        getRole,
+        getCurrentUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

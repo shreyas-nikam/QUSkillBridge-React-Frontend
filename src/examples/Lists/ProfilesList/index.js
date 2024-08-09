@@ -31,9 +31,7 @@ import MDButton from "components/MDButton";
 function ProfilesList({ title, profiles, shadow }) {
   const renderProfiles = profiles.map(({ image, name, description, action }) => (
     <MDBox key={name} component="li" display="flex" alignItems="center" py={1} mb={1}>
-      <MDBox mr={2}>
-        <MDAvatar src={image} alt="something here" shadow="md" />
-      </MDBox>
+      
       <MDBox display="flex" flexDirection="column" alignItems="flex-start" justifyContent="center">
         <MDTypography variant="button" fontWeight="medium">
           {name}
