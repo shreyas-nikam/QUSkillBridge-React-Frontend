@@ -40,11 +40,11 @@ const MaterialUI = createContext();
 // the authentication context
 export const AuthContext = createContext({
   isAuthenticated: false,
-  login: () => {},
-  register: () => {},
-  logout: () => {},
-  getCurrentUser: () => {},
-  getRole: () => {},
+  login: () => { },
+  register: () => { },
+  logout: () => { },
+  getCurrentUser: () => { },
+  getRole: () => { },
 });
 
 const AuthContextProvider = ({ children }) => {
@@ -157,6 +157,9 @@ function reducer(state, action) {
     case "OPEN_CONFIGURATOR": {
       return { ...state, openConfigurator: action.value };
     }
+    case "OPEN_CHATBOT": {
+      return { ...state, openChatBot: action.value };
+    }
     case "DIRECTION": {
       return { ...state, direction: action.value };
     }
@@ -213,22 +216,15 @@ MaterialUIControllerProvider.propTypes = {
 };
 
 // Context module functions
-const setMiniSidenav = (dispatch, value) =>
-  dispatch({ type: "MINI_SIDENAV", value });
-const setTransparentSidenav = (dispatch, value) =>
-  dispatch({ type: "TRANSPARENT_SIDENAV", value });
-const setWhiteSidenav = (dispatch, value) =>
-  dispatch({ type: "WHITE_SIDENAV", value });
-const setSidenavColor = (dispatch, value) =>
-  dispatch({ type: "SIDENAV_COLOR", value });
-const setTransparentNavbar = (dispatch, value) =>
-  dispatch({ type: "TRANSPARENT_NAVBAR", value });
-const setFixedNavbar = (dispatch, value) =>
-  dispatch({ type: "FIXED_NAVBAR", value });
-const setOpenConfigurator = (dispatch, value) =>
-  dispatch({ type: "OPEN_CONFIGURATOR", value });
-const setDirection = (dispatch, value) =>
-  dispatch({ type: "DIRECTION", value });
+const setMiniSidenav = (dispatch, value) => dispatch({ type: "MINI_SIDENAV", value });
+const setTransparentSidenav = (dispatch, value) => dispatch({ type: "TRANSPARENT_SIDENAV", value });
+const setWhiteSidenav = (dispatch, value) => dispatch({ type: "WHITE_SIDENAV", value });
+const setSidenavColor = (dispatch, value) => dispatch({ type: "SIDENAV_COLOR", value });
+const setTransparentNavbar = (dispatch, value) => dispatch({ type: "TRANSPARENT_NAVBAR", value });
+const setFixedNavbar = (dispatch, value) => dispatch({ type: "FIXED_NAVBAR", value });
+const setOpenConfigurator = (dispatch, value) => dispatch({ type: "OPEN_CONFIGURATOR", value });
+const setOpenChatBot = (dispatch, value) => dispatch({ type: "OPEN_CHATBOT", value });
+const setDirection = (dispatch, value) => dispatch({ type: "DIRECTION", value });
 const setLayout = (dispatch, value) => dispatch({ type: "LAYOUT", value });
 const setDarkMode = (dispatch, value) => dispatch({ type: "DARKMODE", value });
 
@@ -246,4 +242,5 @@ export {
   setDirection,
   setLayout,
   setDarkMode,
+  setOpenChatBot,
 };

@@ -189,7 +189,6 @@ function Overview() {
         },
       },
       // { Header: "ID", accessor: "_id", width: "25%" },
-
       {
         Header: "Company",
         accessor: "job.company",

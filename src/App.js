@@ -34,10 +34,12 @@ import MDAvatar from "components/MDAvatar";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
+import ChatBot from "components/ChatBot";
 
 // Material Dashboard 2 PRO React examples
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
+
 
 // Material Dashboard 2 PRO React themes
 import theme from "assets/theme";
@@ -57,12 +59,7 @@ import routes from "routes";
 import crudRoutes from "crud.routes";
 
 // Material Dashboard 2 PRO React contexts
-import {
-  useMaterialUIController,
-  setMiniSidenav,
-  setOpenConfigurator,
-  AuthContext,
-} from "context";
+import { useMaterialUIController, setMiniSidenav, setOpenConfigurator, setOpenChatBot, AuthContext } from "context";
 
 import { getPermissions } from "config/Permissions";
 
@@ -84,6 +81,7 @@ export default function App({ ability }) {
     direction,
     layout,
     openConfigurator,
+    openChatBot,
     sidenavColor,
     transparentSidenav,
     whiteSidenav,
@@ -138,6 +136,7 @@ export default function App({ ability }) {
   // Change the openConfigurator state
   const handleConfiguratorOpen = () =>
     setOpenConfigurator(dispatch, !openConfigurator);
+
 
   // Setting the dir attribute for the body element
   useEffect(() => {
@@ -218,27 +217,29 @@ export default function App({ ability }) {
     });
 
   const configsButton = (
-    <MDBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.25rem"
-      height="3.25rem"
-      bgColor="white"
-      shadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="dark"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon fontSize="small" color="inherit">
-        settings
-      </Icon>
-    </MDBox>
+    <>
+      {/* <MDBox
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        width="3.25rem"
+        height="3.25rem"
+        bgColor="white"
+        shadow="sm"
+        borderRadius="50%"
+        position="fixed"
+        right="2rem"
+        bottom="2rem"
+        zIndex={99}
+        color="dark"
+        sx={{ cursor: "pointer" }}
+        onClick={handleConfiguratorOpen}
+      >
+        <Icon fontSize="small" color="inherit">
+          settings
+        </Icon>
+      </MDBox> */}
+    </>
   );
 
   return (
@@ -319,11 +320,11 @@ export default function App({ ability }) {
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
                 />
-                <Configurator />
+                <ChatBot />
                 {configsButton}
               </>
             )}
-            {layout === "vr" && <Configurator />}
+            {layout === "vr" && <ChatBot />}
             <Routes>
               <Route path="/auth/login" element={<Login />} />
               {getRoutes(routes)}
@@ -351,11 +352,11 @@ export default function App({ ability }) {
                 onMouseEnter={handleOnMouseEnter}
                 onMouseLeave={handleOnMouseLeave}
               />
-              <Configurator />
+              <ChatBot />
               {configsButton}
             </>
           )}
-          {layout === "vr" && <Configurator />}
+          {layout === "vr" && <ChatBot />}
           <Routes>
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/register" element={<Register />} />

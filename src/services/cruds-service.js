@@ -159,6 +159,14 @@ class CrudService {
     return await HttpService.patch(endpoint, payload);
   };
 
+
+  // update profile
+  updateProfile = async (payload) => {
+    const endpoint = `${fastapiUrl}/get_profile_suggestions/`;
+    response = await axios.post(endpoint, payload);
+    return response.data;
+  }
+
   // persona requests
   getPersonas = async () => {
     const endpoint = "personas";
@@ -213,29 +221,6 @@ class CrudService {
     return await HttpService.get(endpoint);
   }
 
-  // courses requests
-  getCourses = async () => {
-    const endpoint = `courses`;
-    return await HttpService.get(endpoint);
-  }
-
-  getCourse = async (id) => {
-    const endpoint = `courses/${id}`;
-    return await HttpService.get(endpoint);
-  }
-
-  getAvailableCourses = async (id) => {
-    const endpoint = `courses/availableCourses/${id}`;
-    return await HttpService.get(endpoint);
-  }
-
-  // update profile
-  updateProfile = async (payload) => {
-    const endpoint = `${fastapiUrl}/get_profile_suggestions/`;
-    response = await axios.post(endpoint, payload);
-    return response.data;
-  }
-
   generateCourseOutline = async (payload) => {
     const endpoint = `${fastapiUrl}/generate_course_outline/`;
     const response = await axios.post(endpoint, payload);
@@ -254,6 +239,65 @@ class CrudService {
     return response.data;
   }
 
+
+  // courses requests
+  getCourses = async () => {
+    const endpoint = `courses`;
+    return await HttpService.get(endpoint);
+  }
+
+  getCourse = async (id) => {
+    const endpoint = `courses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getAvailableCourses = async (id) => {
+    const endpoint = `courses/availableCourses/${id}`;
+    return await HttpService.get(endpoint);
+  }
+
+  getCourseModules = async (id) => {
+    const endpoint = `${fastapiUrl}/courses/${id}/modules`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  }
+
+  getCourseHomePage = async (id) => {
+    const endpoint = `${fastapiUrl}/courses/${id}/home_page_introduction`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  }
+
+  getVideoLink = async (course_id, module_num) => {
+    const endpoint = `${fastapiUrl}/courses/${course_id}/module/${module_num}/video_link`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  }
+
+  getSlides = async (course_id, module_num) => {
+    const endpoint = `${fastapiUrl}/courses/${course_id}/module/${module_num}/slides`;
+    const response = await axios.get(endpoint, { responseType: 'application/pdf' });
+    return response.data;
+  }
+
+  getQuiz = async (course_id) => {
+    const endpoint = `${fastapiUrl}/courses/${course_id}/quiz`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  }
+
+  getQuizCertificate = async (course_id, user_id) => {
+    const endpoint = `${fastapiUrl}/courses/${course_id}/quiz_certificate/${user_id}`;
+    // the response will be an image
+    const response = await axios.get(endpoint);
+    return response.data;
+  }
+
+  getChatbotResponse = async (payload) => {
+    const endpoint = `${fastapiUrl}/chat/`;
+    const response = await axios.post(endpoint, payload);
+    return response.data;
+  }
 
 }
 

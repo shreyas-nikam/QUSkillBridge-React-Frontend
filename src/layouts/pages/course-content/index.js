@@ -18,9 +18,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import Icon from "@mui/material/Icon";
 
 // Material Dashboard 2 PRO React components
 import MDBox from "components/MDBox";
+import ChatBot from "components/ChatBot";
 
 // Settings page components
 import BaseLayout from "layouts/pages/account/components/BaseLayout";
@@ -30,16 +32,24 @@ import CourseSlides from "layouts/pages/course-content/components/CourseSlides";
 import CourseVideos from "layouts/pages/course-content/components/CourseVideos";
 import QuCoPilot from "layouts/pages/course-content/components/QuCoPilot";
 import Assessment from "layouts/pages/course-content/components/Assessment";
-import CrudService from "services/cruds-service";
+
+// context
+import { useMaterialUIController, setOpenChatBot } from "context";
 
 function CourseContent() {
   const [activeStep, setActiveStep] = useState(0);
   const [content, setActiveContent] = useState(<CourseHome />);
+  const [controller, dispatch] = useMaterialUIController();
+  const {
+    openChatBot,
+  } = controller;
 
   // get the course id from the url
   const location = useLocation();
   const courseId = location.pathname.split("/").pop();
-  console.log(courseId);
+
+  // Change the openChatBot state
+  const handleChatBotOpen = () => setOpenChatBot(dispatch, !openChatBot);
 
   function getSteps() {
     return [
@@ -50,6 +60,30 @@ function CourseContent() {
       "Assessment",
     ];
   }
+
+  const chatBotButton = (
+    <MDBox
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      width="3.25rem"
+      height="3.25rem"
+      bgColor="white"
+      shadow="sm"
+      borderRadius="50%"
+      position="fixed"
+      right="2rem"
+      bottom="2rem"
+      zIndex={99}
+      color="dark"
+      sx={{ cursor: "pointer" }}
+      onClick={handleChatBotOpen}
+    >
+      <Icon fontSize="small" color="inherit">
+        chat
+      </Icon>
+    </MDBox>
+  );
 
   function getStepContent(stepIndex) {
     switch (stepIndex) {
@@ -74,6 +108,8 @@ function CourseContent() {
   const steps = getSteps();
   return (
     <BaseLayout>
+      <ChatBot courseId={courseId} />
+      {chatBotButton}
       <MDBox mt={4}>
         <Grid container spacing={3}>
           <Grid item xs={12} lg={3}>
