@@ -48,13 +48,15 @@ import booking3 from "assets/images/products/product-3-min.jpg";
 
 
 import CrudService from "services/cruds-service";
+import MDButton from "components/MDButton";
+import { set } from "date-fns";
 
 
 function Analytics() {
   const { sales, tasks } = reportsLineChartData;
 
   const { setIsAuthenticated, getCurrentUser } = useContext(AuthContext);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
 
   const [jobs, setJobs] = useState([]);
@@ -65,111 +67,123 @@ function Analytics() {
       if (!user_id) {
         setIsAuthenticated(false);
         localStorage.removeItem("token");
+        return user_id;
       }
     }
-    checkToken();
+    checkToken().then((user_id) => {
+      setUser(user_id);
+    });
+  }, []);
+
+  // function to get course modules
+  useEffect(() => {
+    async function getCourseModules(course_id) {
+      const response = await CrudService.getCourseModules(course_id);
+      console.log("Course Modules", response);
+
+    }
+    // returns a list of course modules
+    getCourseModules("66a91f79a760e1475cb110a1");
+  }, []);
+
+  // function to get the course home page introduction
+  useEffect(() => {
+    async function getCourseHomePage(course_id) {
+      const response = await CrudService.getCourseHomePage(course_id);
+      console.log("Course Home Page", response);
+    }
+    // returns the course home page introduction markdown string
+    getCourseHomePage("66a91f79a760e1475cb110a1");
   }, []);
 
 
-  // // function to get the jobs data for the particular user
+
+  // Starter code for getting the video link for a module and setting it in the state to be used in the 
+  // component as shown below (the code for the component is commented out as well in the react component below)
+  const [videoLink, setVideoLink] = useState("");
+
+  // function to get the course video link
+  useEffect(() => {
+    async function getVideoLink(course_id, module_num) {
+      const response = await CrudService.getVideoLink(course_id, module_num);
+      console.log("Video Link", response);
+      return response;
+    }
+    // returns the video link
+    getVideoLink("66a91f79a760e1475cb110a1", 0).then((response) => {
+      setVideoLink(response);
+    });
+  }, []);
+
+
+  // Starter code for getting the pdf slides for a module and setting it in the state to be used in the 
+  // component as shown below (the code for the component is commented out as well in the react component below)
+  const [pdfBlob, setPdfBlob] = useState("");
+
+  // function to get the course slides
+  useEffect(() => {
+    async function getSlides(course_id, module_num) {
+      const response = await CrudService.getSlides(course_id, module_num);
+      // console.log("Slides", response);
+      setPdfBlob(response);
+    }
+    // returns the course slides
+    getSlides("66a91f79a760e1475cb110a1", 0);
+  }, []);
+
+  // this code is for creating the download button for the pdf slides if you don't want to render the slides.
+  const downloadPdf = () => {
+    // Create a link and set the URL using the base64 data
+    const link = document.createElement('a');
+    link.href = `data:application/pdf;base64,${pdfBlob}`;
+    link.download = 'downloaded_file.pdf'; // Set the default filename for the download
+
+    // Append to the body, click, and remove it
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
+  // // Starter code for getting the quiz for a course
+  // const [quiz, setQuiz] = useState({});
+
   // useEffect(() => {
-  //   async function checkToken() {
-  //     let user_id = await getCurrentUser();
-  //     if (!user_id) {
-  //       setIsAuthenticated(false);
-  //       localStorage.removeItem("token");
-  //     }
-  //     else {
-  //       setUser(user_id);
-  //       return user_id;
-  //     }
+  //   async function getQuiz(course_id){
+  //     const response = await CrudService.getQuiz(course_id);
+  //     console.log("Quiz", response);
+  //     setQuiz(response);
   //   }
-  //   async function fetchJobsData(userId) {
-  //     let response = await CrudService.getJobsByPersona(userId);
-  //     console.log("response data", response);
-  //     setJobs(response);
-  //   }
-  //   checkToken().then((userId) => fetchJobsData(userId)).then(() => console.log("jobs", jobs));
+  //   // returns the quiz
+  //   getQuiz("66a91f79a760e1475cb110a1");
   // }, []);
 
+  // Starter code for getting the quiz certificate for a course
+  // and displaying it in the component as shown below
 
-  // // function to get a particular course
-  // useEffect(() => {
-  //   async function fetchCourseData() {
-  //     let response = await CrudService.getCourse("66a91f79a760e1475cb110a4");
-  //     console.log("response data for course", response);
-  //   }
-  //   fetchCourseData();
-  // }, []);
+  // You will first need to set the user id in the state to be used in the getQuizCertificate function
+  const [user, setUser] = useState({});
+  const [quizCertificate, setQuizCertificate] = useState("");
 
 
-  // function to get a particular job
-  // useEffect(() => {
-  //   async function fetchJobData() {
-  //     let response = await CrudService.getJobDataById("66a91f79a760e1475cb110b6");
-  //     console.log("response data for job", response);
-  //   }
-  //   fetchJobData();
-  // }, []);
-
-  // function to get skill match score
-  // useEffect(() => {
-  //   async function fetchSkillMatchScore() {
-  //     let response = await CrudService.generateSkillMatchScore({
-  //       "job_id": "66a91f79a760e1475cb110b8",
-  //       "profile_id": "66aa9eafd221d572880a58a1"
-  //     });
-  //     console.log("response data for skill match score", response);
-  //   }
-  //   fetchSkillMatchScore();
-  // }, []);
-
-  // function to get the course outline
-  // useEffect(() => {
-  //   // this function should be called when the skill match score is generated.
-  //   // the job_id should be the one from the job that the user has already visited.
-  //   async function fetchCourseOutline() {
-  //     let response = await CrudService.generateCourseOutline({
-  //       "job_id": "66b0dd0c5a072fd2ce4d045a",
-  //       "profile_id": "66aa9eafd221d572880a58a1"
-  //     });
-  //     console.log("response data for course outline", response);
-  //   }
-  //   fetchCourseOutline();
-  // }, []);
-
-  // function to get the cover letter
-  // useEffect(() => {
-  //   // this function should be called when the skill match score is generated.
-  //   // the job_id should be the one from the job that the user has already visited.
-  //   async function fetchCoverLetter() {
-  //     let response = await CrudService.generateCoverLetter({
-  //       "job_id": "66b0dd0c5a072fd2ce4d045a",
-  //       "profile_id": "66aa9eafd221d572880a58a1"
-  //     });
-  //     console.log("response data for cover letter", response);
-  //   }
-  //   fetchCoverLetter();
-  // }, []);
-
-  // function to get the available courses
-  // useEffect(() => {
-  //   async function fetchAvailableCourses() {
-  //     let response = await CrudService.getAvailableCourses("66aa9eafd221d572880a58a1"); // user_id
-  //     console.log("response data for available courses", response);
-  //   }
-  //   fetchAvailableCourses();
-  // }, []);
-
-  // function to get the visited jobs
-  // useEffect(() => {
-  //   async function fetchVisitedJobs() {
-  //     let response = await CrudService.getVisitedJobs("66aa9eafd221d572880a58a1"); // user_id
-  //     console.log("response data for visited jobs", response);
-  //   }
-  //   fetchVisitedJobs();
-  // }, []);
-
+  useEffect(() => {
+    async function checkToken() {
+      let user_id = await getCurrentUser();
+      if (!user_id) {
+        setIsAuthenticated(false);
+        localStorage.removeItem("token");
+      }
+      return user_id;
+    }
+    async function getQuizCertificate(course_id, user_id) {
+      const response = await CrudService.getQuizCertificate(course_id, user_id);
+      setQuizCertificate(`data:image/jpeg;base64,${response}`);
+    }
+    checkToken().then((user_id) => {
+      setUser(user_id);
+      getQuizCertificate("66a91f79a760e1475cb110a1", user_id);
+    });
+  }, []);
 
 
 
@@ -197,6 +211,49 @@ function Analytics() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
+      {/* Starter code to embed the video link */}
+      {/* Embed the video link here */}
+      Video
+      {videoLink && (
+        <Grid container>
+          <Grid item xs={6}>
+            <div dangerouslySetInnerHTML={{ __html: videoLink }} />
+          </Grid>
+        </Grid>
+      )}
+
+      {/* Starter code to display the pdf slides */}
+      {/* Display the pdf */}
+      Slides
+      {pdfBlob && (
+        <MDBox style={{ width: "50%", float: 'right' }}>
+          <iframe
+            // align right
+            style={{ width: '100%', height: '500px' }}
+            src={`data:application/pdf;base64,${pdfBlob}`}
+            frameBorder="0"
+          />
+          <MDButton onClick={downloadPdf} style={{ margin: '20px' }}>
+            Download PDF
+          </MDButton>
+        </MDBox>
+      )}
+
+
+      {/* Starter code to display the quiz certificate */}
+      {/* Display the quiz certificate */}
+
+      {quizCertificate && (
+        <Grid container>
+          <MDTypography>
+            Quiz Certificate
+          </MDTypography>
+          <Grid item xs={6}>
+            <img src={quizCertificate} alt="quiz certificate" height={500} />
+          </Grid>
+        </Grid>
+      )}
+
       <MDBox py={3}>
         <Grid container>
           <SalesByCountry />
