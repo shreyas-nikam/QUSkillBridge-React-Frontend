@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-
+import ReactMarkdown from 'react-markdown';
 
 // @mui material components
 import Divider from "@mui/material/Divider";
@@ -127,7 +127,13 @@ function ChatBot({ courseId }) {
                                     <MDTypography variant="body2" color="secondary" >
                                         User: {chat.user_message}
                                     </MDTypography>
-                                    <MDTypography variant="body2" color="primary">AI: {chat.bot_message}</MDTypography>
+                                    <MDTypography variant="body2" color="primary">AI:
+                                        <MDBox m={1} p={3}>
+                                            <ReactMarkdown>
+                                                {chat.bot_message}
+                                            </ReactMarkdown>
+                                        </MDBox>
+                                    </MDTypography>
                                 </MDBox>
                             </Grid>
                         );
@@ -144,7 +150,7 @@ function ChatBot({ courseId }) {
                 pt={2}
                 pb={2}
                 px={3}
-                style={{ position: "absolute", bottom: 0, width: "100%" }}
+                style={{ position: "sticky", bottom: 0, width: "100%" }}
             >
                 <Divider />
                 <MDBox width="100%">

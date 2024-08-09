@@ -40,7 +40,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
     return {
         // push it to the bottom right
         "& .MuiDrawer-paper": {
-            height: "50vh",
+            height: "100vh",
             margin: 0,
             bottom: 0,
             right: 0,

@@ -17,6 +17,7 @@ Coded by www.nikam-shreyas.com
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context";
 import { useNavigate, useParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
@@ -138,7 +139,7 @@ function VisitedJob() {
         backgroundColors: ["info", "error"],
         data: [
           response.job_description_required_skills.length -
-            response.skills_to_be_learned.length,
+          response.skills_to_be_learned.length,
           response.skills_to_be_learned.length,
         ],
       },
@@ -212,8 +213,8 @@ function VisitedJob() {
               <Grid container>
                 <Grid item xs={12} md={2} lg={2}>
                   {job.job &&
-                  job.job.logo_photo_url !== null &&
-                  job.job.logo_photo_url != "" ? (
+                    job.job.logo_photo_url !== null &&
+                    job.job.logo_photo_url != "" ? (
                     <MDAvatar
                       src={job.job.logo_photo_url}
                       alt="profile-image"
@@ -234,7 +235,8 @@ function VisitedJob() {
               <MDTypography variant="h6" fontWeight="medium" mt={1}>
                 {"Job Description"}
               </MDTypography>
-              {job.job && job.job.description}
+
+              {job.job && <MDBox m={1} p={3}><ReactMarkdown>{job.job.description}</ReactMarkdown></MDBox>}
             </MDBox>
           </Grid>
           <Grid item md={4} lg={6} container>
@@ -263,7 +265,7 @@ function VisitedJob() {
                 ) : (
                   <>
                     {job.skills_in_profile.length > 0 &&
-                    job.skills_in_job.length > 0 ? (
+                      job.skills_in_job.length > 0 ? (
                       <Grid container>
                         <Grid item xs={12}>
                           <MDTypography variant="h6" fontWeight="medium" mt={1}>
@@ -386,7 +388,9 @@ function VisitedJob() {
                       <MDTypography variant="h6" fontWeight="medium" mt={1}>
                         {"Cover Letter"}
                       </MDTypography>
-                      <MDBox>{job.cover_letter}</MDBox>
+                      <MDBox m={1} p={3}>
+                        <ReactMarkdown>{job.cover_letter}</ReactMarkdown>
+                      </MDBox>
                     </>
                   ) : (
                     <>
@@ -441,7 +445,9 @@ function VisitedJob() {
                       <MDTypography variant="h6" fontWeight="medium" mt={1}>
                         {"Course Outline"}
                       </MDTypography>
-                      <MDBox>{job.course_outline}</MDBox>
+                      <MDBox m={1} p={3}>
+                        <ReactMarkdown>{job.course_outline}</ReactMarkdown>
+                      </MDBox>
                       <Divider />
                       <MDBox>
                         Not satisfied with the course outline? You can

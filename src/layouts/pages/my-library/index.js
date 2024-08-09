@@ -179,7 +179,7 @@ function MyLibrary() {
             <Grid item xs={12} md={6} lg={4}>
               <MDBox mt={3}>
                 <CourseCard
-                  image={booking1}
+                  image={course.attributes.app_image_location}
                   title={course.attributes.app_name}
                   description={course.attributes.short_description}
                   label="Explore"

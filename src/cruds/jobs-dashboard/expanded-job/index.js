@@ -17,6 +17,7 @@ Coded by www.nikam-shreyas.com
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "context";
 import { useNavigate, useParams } from "react-router-dom";
+import ReactMarkdown from 'react-markdown'
 
 import Grid from "@mui/material/Grid";
 import Tooltip from "@mui/material/Tooltip";
@@ -37,6 +38,8 @@ import CrudService from "services/cruds-service";
 
 import { useMaterialUIController } from "context";
 import MDButton from "components/MDButton";
+
+
 
 function ExpandedJob() {
   const { job_id } = useParams();
@@ -195,7 +198,9 @@ function ExpandedJob() {
               <MDTypography variant="h6" color="text" mt={1}>
                 {"Job Description"}
               </MDTypography>
-              {job.description}
+              <MDBox m={1} p={3}>
+                <ReactMarkdown>{job.description}</ReactMarkdown>
+              </MDBox>
             </MDBox>
           </Grid>
 
@@ -228,9 +233,9 @@ function ExpandedJob() {
 
             {/* CEO Information */}
             {job.ceo_name !== null &&
-            job.ceo_name != "" &&
-            job.ceo_photo_url !== null &&
-            job.ceo_photo_url != "" ? (
+              job.ceo_name != "" &&
+              job.ceo_photo_url !== null &&
+              job.ceo_photo_url != "" ? (
               <MDBox
                 key="ceo_block"
                 display="block"
@@ -343,7 +348,7 @@ function ExpandedJob() {
             ) : null}
             {/* Number of employees information */}
             {job.company_num_employees !== null &&
-            job.company_num_employees != "" ? (
+              job.company_num_employees != "" ? (
               <MDBox
                 key="company_num_employees_block"
                 display="block"
@@ -368,11 +373,11 @@ function ExpandedJob() {
             ) : null}
             {/* Salary Information */}
             {job.min_amount !== null &&
-            job.max_amount !== null &&
-            job.currency !== null &&
-            job.min_amount != "" &&
-            job.max_amount != "" &&
-            job.currency != "" ? (
+              job.max_amount !== null &&
+              job.currency !== null &&
+              job.min_amount != "" &&
+              job.max_amount != "" &&
+              job.currency != "" ? (
               <MDBox
                 key="salary_block"
                 display="block"
@@ -468,7 +473,7 @@ function ExpandedJob() {
               </MDBox>
             ) : null}
             {job.company_description !== null &&
-            job.company_description != "" ? (
+              job.company_description != "" ? (
               <MDBox
                 key="company_description_block"
                 display="block"
